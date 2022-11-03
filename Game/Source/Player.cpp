@@ -58,7 +58,8 @@ bool Player::Update()
 	// L07 DONE 5: Add physics to the player - updated player position using physics
 
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
-	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) {
+	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) 
+	{
 		float impulse = pbody->body->GetMass() * 6.0f;
 		pbody->body->ApplyLinearImpulse(b2Vec2(0, -impulse), pbody->body->GetWorldCenter(), true);
 	}
