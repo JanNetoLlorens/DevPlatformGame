@@ -109,7 +109,7 @@ void Map::DrawColliders()
                     iPoint pos = MapToWorld(x, y);
                     if (gid != NULL)
                     {
-                        PhysBody* c1 = app->physics->CreateRectangle(pos.x+18, pos.y+16, r.w, r.h, STATIC);
+                        PhysBody* c1 = app->physics->CreateRectangle(pos.x+16, pos.y+16, r.w, r.h, STATIC);
                         c1->ctype = ColliderType::PLATFORM;
                     }
                 }
