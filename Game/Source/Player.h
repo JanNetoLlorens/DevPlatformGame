@@ -7,6 +7,12 @@
 
 struct SDL_Texture;
 
+enum _moveState {
+	MS_STOP,
+	MS_LEFT,
+	MS_RIGHT,
+};
+
 class Player : public Entity
 {
 public:
@@ -37,6 +43,7 @@ private:
 
 	// L07 DONE 5: Add physics to the player - declare a Physics body
 	PhysBody* pbody;
+	_moveState moveState;
 
 	int pickCoinFxId;
 

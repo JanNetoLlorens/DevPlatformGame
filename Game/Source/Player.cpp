@@ -57,27 +57,44 @@ bool Player::Update()
 
 	// L07 DONE 5: Add physics to the player - updated player position using physics
 
-	int speed = 10; 
-	b2Vec2 vel = b2Vec2(0, -GRAVITY_Y); 
-
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
-	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
-		//
+	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) {
+		float impulse = pbody->body->GetMass() * 6.0f;
+		pbody->body->ApplyLinearImpulse(b2Vec2(0, -impulse), pbody->body->GetWorldCenter(), true);
 	}
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
 		//
 	}
 		
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		vel = b2Vec2(-speed, -GRAVITY_Y);
+		moveState = MS_LEFT;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
+		moveState = MS_STOP;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		vel = b2Vec2(speed, -GRAVITY_Y);
+		moveState = MS_RIGHT;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
+		moveState = MS_STOP;
+	}
+
+	b2Vec2 vel = pbody->body->GetLinearVelocity();
+	float desiredVel = 0;
+
+	switch (moveState)
+	{
+	case MS_LEFT:  desiredVel = -5; break;
+	case MS_STOP:  desiredVel = 0; break;
+	case MS_RIGHT: desiredVel = 5; break;
 	}
 
 	//Set the velocity of the pbody of the player
-	pbody->body->SetLinearVelocity(vel);
+	//pbody->body->SetLinearVelocity(vel);
+	float velChange = desiredVel - vel.x;
+	float impulse = pbody->body->GetMass() * velChange; //disregard time factor
+	pbody->body->ApplyLinearImpulse(b2Vec2(impulse, 0), pbody->body->GetWorldCenter(), true);
 
 	//Update player position in pixels
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
