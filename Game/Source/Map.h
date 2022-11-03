@@ -36,6 +36,8 @@ enum MapTypes
 	MAPTYPE_STAGGERED
 };
 
+
+
 // L06: DONE 5: Create a generic structure to hold properties
 struct Properties
 {
@@ -121,6 +123,8 @@ public:
 
     // Called each loop iteration
     void Draw();
+
+	void DrawColliders();
 
     // Called before quitting
     bool CleanUp();

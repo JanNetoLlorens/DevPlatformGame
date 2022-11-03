@@ -85,6 +85,41 @@ void Map::Draw()
     }
 }
 
+void Map::DrawColliders()
+{
+    ListItem<MapLayer*>* mapLayerItem;
+    mapLayerItem = mapData.maplayers.start;
+
+    while (mapLayerItem != NULL) {
+
+        //L06: DONE 7: use GetProperty method to ask each layer if your “Draw” property is true.
+        if (mapLayerItem->data->properties.GetProperty("Collisions") != NULL && mapLayerItem->data->properties.GetProperty("Collisions")->value) {
+
+            for (int x = 0; x < mapLayerItem->data->width; x++)
+            {
+                for (int y = 0; y < mapLayerItem->data->height; y++)
+                {
+                    // L05: DONE 9: Complete the draw function
+                    int gid = mapLayerItem->data->Get(x, y);
+
+                    //L06: DONE 3: Obtain the tile set using GetTilesetFromTileId
+                    TileSet* tileset = GetTilesetFromTileId(gid);
+
+                    SDL_Rect r = tileset->GetTileRect(gid);
+                    iPoint pos = MapToWorld(x, y);
+                    if (gid != NULL)
+                    {
+                        PhysBody* c1 = app->physics->CreateRectangle(pos.x+18, pos.y+16, r.w, r.h, STATIC);
+                        c1->ctype = ColliderType::PLATFORM;
+                    }
+                }
+            }
+        }
+        mapLayerItem = mapLayerItem->next;
+
+    }
+}
+
 // L05: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
 iPoint Map::MapToWorld(int x, int y) const
 {
@@ -191,19 +226,21 @@ bool Map::Load()
         ret = LoadAllLayers(mapFileXML.child("map"));
     }
     
-    // L07 DONE 3: Create colliders
-    // Later you can create a function here to load and create the colliders from the map
-    PhysBody* c1 = app->physics->CreateRectangle(224 + 128, 543 + 32, 256, 64, STATIC);
-    // L07 DONE 7: Assign collider type
-    c1->ctype = ColliderType::PLATFORM;
+    DrawColliders();
 
-    PhysBody* c2 = app->physics->CreateRectangle(352 + 64, 384 + 32, 128, 64, STATIC);
-    // L07 DONE 7: Assign collider type
-    c2->ctype = ColliderType::PLATFORM;
+    //// L07 DONE 3: Create colliders
+    //// Later you can create a function here to load and create the colliders from the map
+    //PhysBody* c1 = app->physics->CreateRectangle(224 + 128, 543 + 32, 256, 64, STATIC);
+    //// L07 DONE 7: Assign collider type
+    //c1->ctype = ColliderType::PLATFORM;
 
-    PhysBody* c3 = app->physics->CreateRectangle(256, 704 + 32, 576, 64, STATIC);
-    // L07 DONE 7: Assign collider type
-    c3->ctype = ColliderType::PLATFORM;
+    //PhysBody* c2 = app->physics->CreateRectangle(352 + 64, 384 + 32, 128, 64, STATIC);
+    //// L07 DONE 7: Assign collider type
+    //c2->ctype = ColliderType::PLATFORM;
+
+    //PhysBody* c3 = app->physics->CreateRectangle(256, 704 + 32, 576, 64, STATIC);
+    //// L07 DONE 7: Assign collider type
+    //c3->ctype = ColliderType::PLATFORM;
 
     if(ret == true)
     {
