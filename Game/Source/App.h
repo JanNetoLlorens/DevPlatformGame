@@ -14,6 +14,7 @@ class Window;
 class Input;
 class Render;
 class Textures;
+class Animation;
 class Audio;
 class Scene;
 class EntityManager;
@@ -85,6 +86,7 @@ public:
 	Input* input;
 	Render* render;
 	Textures* tex;
+	Animation* animation;
 	Audio* audio;
 	Scene* scene;
 	EntityManager* entityManager;
