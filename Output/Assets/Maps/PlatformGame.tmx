@@ -3095,6 +3095,7 @@
  </layer>
  <layer id="3" name="Death" width="64" height="24">
   <properties>
+   <property name="Collisions" type="bool" value="true"/>
    <property name="DeathCollider" type="bool" value="true"/>
    <property name="Draw" type="bool" value="false"/>
   </properties>

@@ -107,7 +107,7 @@ bool Player::Update()
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
 	position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
 
-	app->render->DrawTexture(texture, position.x , position.y);
+	app->render->DrawTexture(texture, position.x, position.y);
 
 	return true;
 }
@@ -132,6 +132,14 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			LOG("Collision PLATFORM");
 			enableJump = true;
 			numJumps = 0;
+			break;
+		case ColliderType::DEATH:
+			LOG("Collision DEATH");
+			app->audio->PlayFx(pickCoinFxId);
+			deathCollider = true;
+			break;
+		case ColliderType::WIN:
+			LOG("Collision WIN");
 			break;
 		case ColliderType::UNKNOWN:
 			LOG("Collision UNKNOWN");

@@ -107,7 +107,13 @@ void Map::DrawColliders()
 
                     SDL_Rect r = tileset->GetTileRect(gid);
                     iPoint pos = MapToWorld(x, y);
-                    if (gid != NULL)
+
+                    if (gid != NULL && (mapLayerItem->data->properties.GetProperty("DeathCollider") != NULL && mapLayerItem->data->properties.GetProperty("DeathCollider")->value))
+                    {
+                        PhysBody* c1 = app->physics->CreateRectangle(pos.x + 16, pos.y + 16, r.w, r.h, STATIC);
+                        c1->ctype = ColliderType::DEATH;
+                    }
+                    else if (gid != NULL)
                     {
                         PhysBody* c1 = app->physics->CreateRectangle(pos.x+16, pos.y+16, r.w, r.h, STATIC);
                         c1->ctype = ColliderType::PLATFORM;
