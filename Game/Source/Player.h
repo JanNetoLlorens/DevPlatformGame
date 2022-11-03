@@ -46,7 +46,8 @@ private:
 	_moveState moveState;
 
 	int pickCoinFxId;
-
+	bool enableJump;
+	int numJumps;
 };
 
 #endif // __PLAYER_H__

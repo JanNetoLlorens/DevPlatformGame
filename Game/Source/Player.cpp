@@ -28,6 +28,7 @@ bool Player::Awake() {
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
+	
 
 	return true;
 }
@@ -60,8 +61,13 @@ bool Player::Update()
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
 	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) 
 	{
-		float impulse = pbody->body->GetMass() * 6.0f;
-		pbody->body->ApplyLinearImpulse(b2Vec2(0, -impulse), pbody->body->GetWorldCenter(), true);
+		if (enableJump == true || numJumps < 2 )
+		{
+			numJumps++;
+			enableJump = false;
+			float impulse = pbody->body->GetMass() * 6.0f;
+			pbody->body->ApplyLinearImpulse(b2Vec2(0, -impulse), pbody->body->GetWorldCenter(), true);
+		}
 	}
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
 		//
@@ -124,6 +130,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 		case ColliderType::PLATFORM:
 			LOG("Collision PLATFORM");
+			enableJump = true;
+			numJumps = 0;
 			break;
 		case ColliderType::UNKNOWN:
 			LOG("Collision UNKNOWN");
