@@ -19,6 +19,7 @@ class Audio;
 class LogoScreen;
 class IntroScreen;
 class Scene;
+class EndingScreen;
 class EntityManager;
 class Map;
 //L07 DONE 2: Add Physics module
@@ -93,6 +94,7 @@ public:
 	LogoScreen* logoScreen;
 	IntroScreen* introScreen;
 	Scene* scene;
+	EndingScreen* endingScreen;
 	EntityManager* entityManager;
 	Map* map;
 	//L07 DONE 2: Add Physics module

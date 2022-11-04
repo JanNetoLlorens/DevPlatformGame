@@ -5,6 +5,7 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Scene.h"
+#include "EndingScreen.h"
 #include "EntityManager.h"
 #include "Map.h"
 #include "Physics.h"
@@ -34,6 +35,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	logoScreen = new LogoScreen();
 	introScreen = new IntroScreen();
 	scene = new Scene();
+	endingScreen = new EndingScreen();
 	entityManager = new EntityManager();
 	map = new Map();
 
@@ -49,6 +51,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(logoScreen);
 	AddModule(introScreen);
 	AddModule(scene);
+	AddModule(endingScreen);
 	AddModule(entityManager);
 	AddModule(map);
 
