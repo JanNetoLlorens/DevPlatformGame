@@ -49,6 +49,9 @@
     <ClCompile Include="Source\LogoScreen.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\IntroScreen.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Defs.h">
@@ -124,6 +127,9 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\LogoScreen.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IntroScreen.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

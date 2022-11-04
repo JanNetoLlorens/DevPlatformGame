@@ -17,6 +17,7 @@ class Textures;
 class Animation;
 class Audio;
 class LogoScreen;
+class IntroScreen;
 class Scene;
 class EntityManager;
 class Map;
@@ -90,6 +91,7 @@ public:
 	Animation* animation;
 	Audio* audio;
 	LogoScreen* logoScreen;
+	IntroScreen* introScreen;
 	Scene* scene;
 	EntityManager* entityManager;
 	Map* map;

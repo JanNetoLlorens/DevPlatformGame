@@ -10,6 +10,7 @@
 #include "Physics.h"
 #include "Animation.h"
 #include "LogoScreen.h"
+#include "IntroScreen.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -30,10 +31,11 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	//L07 DONE 2: Add Physics module
 	physics = new Physics();
+	logoScreen = new LogoScreen();
+	introScreen = new IntroScreen();
 	scene = new Scene();
 	entityManager = new EntityManager();
 	map = new Map();
-	logoScreen = new LogoScreen();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -44,10 +46,11 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	//L07 DONE 2: Add Physics module
 	AddModule(physics);
+	AddModule(logoScreen);
+	AddModule(introScreen);
 	AddModule(scene);
 	AddModule(entityManager);
 	AddModule(map);
-	AddModule(logoScreen);
 
 	// Render last to swap buffer
 	AddModule(render);
