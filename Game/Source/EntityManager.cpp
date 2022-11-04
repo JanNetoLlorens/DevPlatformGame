@@ -4,6 +4,7 @@
 #include "App.h"
 #include "Textures.h"
 #include "Scene.h"
+#include "Physics.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -132,4 +133,40 @@ bool EntityManager::Update(float dt)
 	}
 
 	return ret;
+}
+
+bool EntityManager::LoadState(pugi::xml_node& data)
+{
+	bool ret = true;
+	ListItem<Entity*>* item;
+	Entity* pEntity = NULL;
+
+	for (item = entities.start; item != NULL && ret == true; item = item->next)
+	{
+		pEntity = item->data;
+
+		if (pEntity->active == false) continue;
+		ret = item->data->LoadState(data);
+	}
+
+	return ret;
+}
+
+bool EntityManager::SaveState(pugi::xml_node& data)
+{
+	bool ret = true;
+	ListItem<Entity*>* item;
+	Entity* pEntity = NULL;
+
+	for (item = entities.start; item != NULL && ret == true; item = item->next)
+	{
+		pEntity = item->data;
+
+		if (pEntity->active == false) continue;
+		ret = item->data->SaveState(data);
+	}
+
+	return ret;
+
+	return true;
 }

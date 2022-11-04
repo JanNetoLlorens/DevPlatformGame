@@ -3,12 +3,15 @@
 	<input />
 	<window />
 	<textures />
+	<:anonymous />
 	<audio />
 	<:anonymous />
 	<scene />
-	<entitymanager />
+	<entitymanager>
+		<player x="1897" y="543" />
+	</entitymanager>
 	<map />
 	<renderer>
-		<camera x="0" y="0" />
+		<camera x="-1029" y="0" />
 	</renderer>
 </save_state>

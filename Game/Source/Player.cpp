@@ -107,6 +107,11 @@ bool Player::Update()
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
 	position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
 
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
+		pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(parameters.attribute("x").as_int()), PIXEL_TO_METERS(parameters.attribute("y").as_int())), 0);
+	}
+
 	app->render->DrawTexture(texture, position.x, position.y);
 
 	return true;
@@ -146,6 +151,24 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 	}
 	
+	
+}
 
+bool Player::LoadState(pugi::xml_node& data)
+{
+	position.x = data.child("player").attribute("x").as_int();
+	position.y = data.child("player").attribute("y").as_int();
+	b2Vec2 pos(position.x, position.y);
+	pbody->body->SetTransform(PIXEL_TO_METERS(pos), 0);
 
+	return true;
+}
+bool Player::SaveState(pugi::xml_node& data)
+{
+	pugi::xml_node play = data.append_child("player");
+
+	play.append_attribute("x") = position.x;
+	play.append_attribute("y") = position.y;
+
+	return true;
 }

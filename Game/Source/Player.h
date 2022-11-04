@@ -1,6 +1,8 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
+#include "Module.h"
+
 #include "Entity.h"
 #include "Point.h"
 #include "SDL/include/SDL.h"
@@ -31,6 +33,9 @@ public:
 
 	// L07 DONE 6: Define OnCollision function for the player. Check the virtual function on Entity class
 	void OnCollision(PhysBody* physA, PhysBody* physB);
+
+	bool LoadState(pugi::xml_node&);
+	bool SaveState(pugi::xml_node&);
 
 
 public:
