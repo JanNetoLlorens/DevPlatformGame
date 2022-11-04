@@ -9,6 +9,7 @@
 #include "Map.h"
 #include "Physics.h"
 #include "Animation.h"
+#include "LogoScreen.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -32,6 +33,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new Scene();
 	entityManager = new EntityManager();
 	map = new Map();
+	logoScreen = new LogoScreen();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -45,6 +47,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(entityManager);
 	AddModule(map);
+	AddModule(logoScreen);
 
 	// Render last to swap buffer
 	AddModule(render);
