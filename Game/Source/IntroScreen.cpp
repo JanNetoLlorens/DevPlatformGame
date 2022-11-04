@@ -12,7 +12,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-IntroScreen::IntroScreen() : Module()
+IntroScreen::IntroScreen(bool startEnabled) : Module(startEnabled)
 {
 	name.Create("introScreen");
 }

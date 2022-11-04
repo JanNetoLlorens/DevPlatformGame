@@ -12,7 +12,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-EndingScreen::EndingScreen() : Module()
+EndingScreen::EndingScreen(bool startEnabled) : Module(startEnabled)
 {
 	name.Create("introScreen");
 }

@@ -12,6 +12,7 @@
 #include "Animation.h"
 #include "LogoScreen.h"
 #include "IntroScreen.h"
+#include "ModuleFadeToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -24,27 +25,26 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 {
 	frames = 0;
 
-	input = new Input();
-	win = new Window();
-	render = new Render();
-	tex = new Textures();
-	animation = new Animation();
-	audio = new Audio();
+	input = new Input(true);
+	win = new Window(true);
+	render = new Render(true);
+	tex = new Textures(true);
+	audio = new Audio(true);
 	//L07 DONE 2: Add Physics module
-	physics = new Physics();
-	logoScreen = new LogoScreen();
-	introScreen = new IntroScreen();
-	scene = new Scene();
-	endingScreen = new EndingScreen();
-	entityManager = new EntityManager();
-	map = new Map();
+	physics = new Physics(true);
+	logoScreen = new LogoScreen(false);
+	introScreen = new IntroScreen(false);
+	scene = new Scene(false);
+	endingScreen = new EndingScreen(false);
+	entityManager = new EntityManager(true);
+	map = new Map(true);
+	fadeToBlack = new ModuleFadeToBlack(true);
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	AddModule(input);
 	AddModule(win);
 	AddModule(tex);
-	AddModule(animation);
 	AddModule(audio);
 	//L07 DONE 2: Add Physics module
 	AddModule(physics);
@@ -54,6 +54,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(endingScreen);
 	AddModule(entityManager);
 	AddModule(map);
+	AddModule(fadeToBlack);
 
 	// Render last to swap buffer
 	AddModule(render);
@@ -193,7 +194,7 @@ bool App::PreUpdate()
 	{
 		pModule = item->data;
 
-		if (pModule->active == false) {
+		if (pModule->isEnabled == false) {
 			continue;
 		}
 
@@ -215,7 +216,7 @@ bool App::DoUpdate()
 	{
 		pModule = item->data;
 
-		if (pModule->active == false) {
+		if (pModule->isEnabled == false) {
 			continue;
 		}
 
@@ -236,7 +237,7 @@ bool App::PostUpdate()
 	{
 		pModule = item->data;
 
-		if (pModule->active == false) {
+		if (pModule->isEnabled == false) {
 			continue;
 		}
 

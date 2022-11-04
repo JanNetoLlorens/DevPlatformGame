@@ -55,6 +55,9 @@
     <ClCompile Include="Source\EndingScreen.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ModuleFadeToBlack.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Defs.h">
@@ -136,6 +139,9 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\EndingScreen.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ModuleFadeToBlack.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

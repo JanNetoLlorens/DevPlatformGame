@@ -11,7 +11,7 @@ class EndingScreen : public Module
 {
 public:
 
-	EndingScreen();
+	EndingScreen(bool startEnabled);
 
 	// Destructor
 	virtual ~EndingScreen();

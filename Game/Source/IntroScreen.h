@@ -11,7 +11,7 @@ class IntroScreen : public Module
 {
 public:
 
-	IntroScreen();
+	IntroScreen(bool startEnabled);
 
 	// Destructor
 	virtual ~IntroScreen();
