@@ -8,6 +8,7 @@
 #include "EntityManager.h"
 #include "Map.h"
 #include "IntroScreen.h"
+#include "ModuleFadeToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -33,8 +34,11 @@ bool IntroScreen::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool IntroScreen::Start()
 {
-	//img = app->tex->Load("Assets/Textures/test.png");
+	img = app->tex->Load(app->LoadConfigFile().child("introScreen").child("img").attribute("texturepath").as_string());
+	berry = app->tex->Load(app->LoadConfigFile().child("introScreen").child("berry").attribute("texturepath").as_string());
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
+
+	printedRight = false;
 
 	return true;
 }
@@ -42,13 +46,37 @@ bool IntroScreen::Start()
 // Called each loop iteration
 bool IntroScreen::PreUpdate()
 {
+
+
 	return true;
 }
 
 // Called each loop iteration
 bool IntroScreen::Update(float dt)
 {
-	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
+	app->render->DrawTexture(img, 0, 45); // Placeholder not needed any more
+
+	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
+	{
+		printedRight = true;
+	}
+	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
+	{
+		printedRight = false;
+	}
+
+	if(!printedRight)
+		app->render->DrawTexture(berry, 460, 590);
+	else if (printedRight)
+		app->render->DrawTexture(berry, 810, 590);
+
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	{
+		if (!printedRight)
+			app->fade->FadeToBlack(this, (Module*)app->scene, 0);
+		else if (printedRight)
+			return false;
+	}
 
 	return true;
 }

@@ -34,7 +34,8 @@ bool LogoScreen::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LogoScreen::Start()
 {
-	img = app->tex->Load("Assets/Textures/test.png");
+	//img = app->tex->Load("Assets/Textures/Logo.png");
+	img = app->tex->Load(app->LoadConfigFile().child("logoScreen").child("img").attribute("texturepath").as_string());
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 
 	return true;
@@ -49,9 +50,9 @@ bool LogoScreen::PreUpdate()
 // Called each loop iteration
 bool LogoScreen::Update(float dt)
 {
-	app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
+	app->render->DrawTexture(img, 0, 20); // Placeholder not needed any more
 
-	app->fade->FadeToBlack(this, app->scene, 90);
+	app->fade->FadeToBlack(this, (Module*)app->introScreen, 120);
 
 	return true;
 }

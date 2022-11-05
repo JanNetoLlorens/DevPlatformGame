@@ -193,7 +193,6 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 		case ColliderType::DEATH:
 			LOG("Collision DEATH");
-			app->audio->PlayFx(pickCoinFxId);
 			deathCollider = true;
 			break;
 		case ColliderType::WIN:
