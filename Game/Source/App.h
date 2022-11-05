@@ -96,7 +96,7 @@ public:
 	EndingScreen* endingScreen;
 	EntityManager* entityManager;
 	Map* map;
-	ModuleFadeToBlack* fadeToBlack;
+	ModuleFadeToBlack* fade;
 	//L07 DONE 2: Add Physics module
 	Physics* physics;
 

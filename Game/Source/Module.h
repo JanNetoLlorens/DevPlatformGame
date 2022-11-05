@@ -17,7 +17,7 @@ public:
 
 	void Init()
 	{
-		isEnabled = true;
+		//isEnabled = true;
 	}
 
 	// Called before render is available

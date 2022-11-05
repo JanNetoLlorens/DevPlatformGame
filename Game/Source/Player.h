@@ -3,6 +3,7 @@
 
 #include "Module.h"
 
+#include "Animation.h"
 #include "Entity.h"
 #include "Point.h"
 #include "SDL/include/SDL.h"

@@ -32,13 +32,13 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio(true);
 	//L07 DONE 2: Add Physics module
 	physics = new Physics(true);
-	logoScreen = new LogoScreen(false);
+	logoScreen = new LogoScreen(true);
 	introScreen = new IntroScreen(false);
 	scene = new Scene(false);
 	endingScreen = new EndingScreen(false);
-	entityManager = new EntityManager(true);
+	entityManager = new EntityManager(false);
 	map = new Map(true);
-	fadeToBlack = new ModuleFadeToBlack(true);
+	fade = new ModuleFadeToBlack(true);
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -54,7 +54,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(endingScreen);
 	AddModule(entityManager);
 	AddModule(map);
-	AddModule(fadeToBlack);
+	AddModule(fade);
 
 	// Render last to swap buffer
 	AddModule(render);
@@ -168,6 +168,8 @@ bool App::LoadConfig()
 
 	return ret;
 }
+
+
 
 // ---------------------------------------------
 void App::PrepareUpdate()
