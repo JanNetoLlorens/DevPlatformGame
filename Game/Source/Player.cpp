@@ -28,7 +28,47 @@ bool Player::Awake() {
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
+
+	// idle
+	idleAnim.PushBack({ 0, 0, 29, 39 });
+	//idleAnim.PushBack({ 29, 0, 29, 39 });
+	//idleAnim.PushBack({ 58, 0, 29, 39 });
+	idleAnim.PushBack({ 87, 0, 29, 39 });
+//	idleAnim.PushBack({ 116, 0, 29, 39 });
+	idleAnim.PushBack({ 145, 0, 29, 39 });
+	idleAnim.speed = 0.1f;
 	
+	// right walk
+	walkRightAnim.PushBack({ 0, 39, 33, 36 });
+	walkRightAnim.PushBack({ 33, 39, 33, 36 });
+	walkRightAnim.PushBack({ 66, 39, 33, 36 });
+	walkRightAnim.PushBack({ 99, 39, 33, 36 });
+	walkRightAnim.PushBack({ 132, 39, 33, 36 });
+	walkRightAnim.PushBack({ 165, 39, 33, 36 });
+	walkRightAnim.speed = 0.1f;
+
+	// left walk
+	walkLeftAnim.PushBack({ 0, 78, 33, 36 });
+	walkLeftAnim.PushBack({ 33, 78, 33, 36 });
+	walkLeftAnim.PushBack({ 66, 78, 33, 36 });
+	walkLeftAnim.PushBack({ 99, 78, 33, 36 });
+	walkLeftAnim.PushBack({ 132, 78, 33, 36 });
+	walkLeftAnim.PushBack({ 165, 78, 33, 36 });
+	walkLeftAnim.speed = 0.1f;
+
+	// jump right
+	jumpRightAnim.PushBack({ 0, 78, 33, 36 });
+	jumpRightAnim.PushBack({ 0, 78, 33, 36 });
+	jumpRightAnim.PushBack({ 0, 78, 33, 36 });
+	jumpRightAnim.PushBack({ 0, 78, 33, 36 });
+	jumpRightAnim.speed = 0.1f;
+
+	// jump left
+	jumpLeftAnim.PushBack({ 0, 78, 33, 36 });
+	jumpLeftAnim.PushBack({ 0, 78, 33, 36 });
+	jumpLeftAnim.PushBack({ 0, 78, 33, 36 });
+	jumpLeftAnim.PushBack({ 0, 78, 33, 36 });
+	jumpLeftAnim.speed = 0.1f;
 
 	return true;
 }
@@ -37,6 +77,9 @@ bool Player::Start() {
 
 	//initilize textures
 	texture = app->tex->Load(texturePath);
+	currentAnimation = &idleAnim;
+
+	dead = false;
 
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	pbody = app->physics->CreateCircle(position.x+16, position.y+16, 16, bodyType::DYNAMIC);
@@ -75,16 +118,20 @@ bool Player::Update()
 		
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		moveState = MS_LEFT;
+		currentAnimation = &walkLeftAnim;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
 		moveState = MS_STOP;
+		currentAnimation = &idleAnim;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		moveState = MS_RIGHT;
+		currentAnimation = &walkRightAnim;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
 		moveState = MS_STOP;
+		currentAnimation = &idleAnim;
 	}
 
 	b2Vec2 vel = pbody->body->GetLinearVelocity();
@@ -112,7 +159,13 @@ bool Player::Update()
 		pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(parameters.attribute("x").as_int()), PIXEL_TO_METERS(parameters.attribute("y").as_int())), 0);
 	}
 
-	app->render->DrawTexture(texture, position.x, position.y);
+	if (!dead)
+	{
+		SDL_Rect rect = currentAnimation->GetCurrentFrame();
+		app->render->DrawTexture(texture, position.x, position.y, &rect);
+	}
+	
+	currentAnimation->Update();
 
 	return true;
 }

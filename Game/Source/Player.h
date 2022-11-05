@@ -47,6 +47,16 @@ private:
 	SDL_Texture* texture;
 	const char* texturePath;
 
+	Animation* currentAnimation = nullptr;
+
+	Animation idleAnim;
+	Animation walkRightAnim;
+	Animation walkLeftAnim;
+	Animation jumpRightAnim;
+	Animation jumpLeftAnim;
+
+	bool dead;
+
 	// L07 DONE 5: Add physics to the player - declare a Physics body
 	PhysBody* pbody;
 	_moveState moveState;
