@@ -3,15 +3,18 @@
 	<input />
 	<window />
 	<textures />
-	<:anonymous />
 	<audio />
 	<:anonymous />
+	<logoScreen />
+	<introScreen />
 	<scene />
+	<introScreen />
 	<entitymanager>
-		<player x="1897" y="543" />
+		<player x="1918" y="543" />
 	</entitymanager>
 	<map />
+	<:anonymous />
 	<renderer>
-		<camera x="-1029" y="0" />
+		<camera x="-1395" y="0" />
 	</renderer>
 </save_state>

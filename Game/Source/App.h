@@ -61,6 +61,7 @@ public:
 	void SaveGameRequest() ;
 	bool LoadFromFile();
 	bool SaveToFile() ;
+	pugi::xml_node LoadConfigFile();
 
 private:
 

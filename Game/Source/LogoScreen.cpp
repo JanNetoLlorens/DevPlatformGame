@@ -8,6 +8,7 @@
 #include "EntityManager.h"
 #include "Map.h"
 #include "LogoScreen.h"
+#include "ModuleFadeToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -34,7 +35,7 @@ bool LogoScreen::Awake(pugi::xml_node& config)
 bool LogoScreen::Start()
 {
 	img = app->tex->Load("Assets/Textures/test.png");
-	app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
+	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 
 	return true;
 }
@@ -49,6 +50,8 @@ bool LogoScreen::PreUpdate()
 bool LogoScreen::Update(float dt)
 {
 	app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
+
+	app->fade->FadeToBlack(this, app->scene, 90);
 
 	return true;
 }

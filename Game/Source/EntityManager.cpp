@@ -25,6 +25,15 @@ bool EntityManager::Awake(pugi::xml_node& config)
 	bool ret = true;
 
 	//Iterates over the entities and calls the Awake
+
+	return ret;
+
+}
+
+bool EntityManager::Start() {
+
+	bool ret = true; 
+
 	ListItem<Entity*>* item;
 	Entity* pEntity = NULL;
 
@@ -36,17 +45,7 @@ bool EntityManager::Awake(pugi::xml_node& config)
 		ret = item->data->Awake();
 	}
 
-	return ret;
-
-}
-
-bool EntityManager::Start() {
-
-	bool ret = true; 
-
 	//Iterates over the entities and calls Start
-	ListItem<Entity*>* item;
-	Entity* pEntity = NULL;
 
 	for (item = entities.start; item != NULL && ret == true; item = item->next)
 	{
