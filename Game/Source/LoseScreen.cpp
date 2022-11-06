@@ -34,8 +34,10 @@ bool LoseScreen::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LoseScreen::Start()
 {
-	img = app->tex->Load(app->LoadConfigFile().child("LoseScreen").child("img").attribute("texturepath").as_string());
+	img = app->tex->Load(app->LoadConfigFile().child("loseScreen").child("img").attribute("texturepath").as_string());
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
+	app->render->camera.x = 0;
+	app->render->camera.y = 0;
 
 	return true;
 }
@@ -49,7 +51,7 @@ bool LoseScreen::PreUpdate()
 // Called each loop iteration
 bool LoseScreen::Update(float dt)
 {
-	app->render->DrawTexture(img, 0, 20); // Placeholder not needed any more
+	app->render->DrawTexture(img, 0, 0); // Placeholder not needed any more
 
 	return true;
 }
