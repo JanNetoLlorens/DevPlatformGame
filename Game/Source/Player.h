@@ -64,7 +64,6 @@ private:
 	int pickCoinFxId;
 	bool enableJump;
 	int numJumps;
-	bool deathCollider;
 };
 
 #endif // __PLAYER_H__

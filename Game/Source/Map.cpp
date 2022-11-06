@@ -190,6 +190,7 @@ bool Map::CleanUp()
 
     // L05: DONE 2: clean up all layer data
     // Remove all layers
+
     ListItem<MapLayer*>* layerItem;
     layerItem = mapData.maplayers.start;
 

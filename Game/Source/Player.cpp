@@ -8,6 +8,9 @@
 #include "Log.h"
 #include "Point.h"
 #include "Physics.h"
+#include "ModuleFadeToBlack.h"
+#include "EntityManager.h"
+#include "Map.h"
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -164,6 +167,12 @@ bool Player::Update()
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		app->render->DrawTexture(texture, position.x, position.y, &rect);
 	}
+	else
+	{
+	//	app->entityManager->Disable();
+		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->introScreen, 0);
+		app->map->CleanUp();
+	}
 	
 	currentAnimation->Update();
 
@@ -193,7 +202,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 		case ColliderType::DEATH:
 			LOG("Collision DEATH");
-			deathCollider = true;
+			dead = true;
 			break;
 		case ColliderType::WIN:
 			LOG("Collision WIN");
