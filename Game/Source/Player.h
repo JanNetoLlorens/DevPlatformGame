@@ -56,6 +56,8 @@ private:
 	Animation jumpLeftAnim;
 
 	bool dead;
+	bool movingRight;
+	bool hasJumped;
 
 	// L07 DONE 5: Add physics to the player - declare a Physics body
 	PhysBody* pbody;

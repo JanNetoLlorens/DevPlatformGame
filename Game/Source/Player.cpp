@@ -60,17 +60,17 @@ bool Player::Awake() {
 	walkLeftAnim.speed = 0.1f;
 
 	// jump right
-	jumpRightAnim.PushBack({ 0, 78, 33, 36 });
-	jumpRightAnim.PushBack({ 0, 78, 33, 36 });
-	jumpRightAnim.PushBack({ 0, 78, 33, 36 });
-	jumpRightAnim.PushBack({ 0, 78, 33, 36 });
+	jumpRightAnim.PushBack({ 0, 111, 35, 44 });
+	jumpRightAnim.PushBack({ 35, 111, 35, 44 });
+	jumpRightAnim.PushBack({ 70, 111, 35, 44 });
+	jumpRightAnim.PushBack({ 105, 111, 35, 44 });
 	jumpRightAnim.speed = 0.1f;
 
 	// jump left
-	jumpLeftAnim.PushBack({ 0, 78, 33, 36 });
-	jumpLeftAnim.PushBack({ 0, 78, 33, 36 });
-	jumpLeftAnim.PushBack({ 0, 78, 33, 36 });
-	jumpLeftAnim.PushBack({ 0, 78, 33, 36 });
+	jumpLeftAnim.PushBack({ 105, 155, 35, 44 });
+	jumpLeftAnim.PushBack({ 70, 155, 35, 44 });
+	jumpLeftAnim.PushBack({ 35, 155, 35, 44 });
+	jumpLeftAnim.PushBack({ 0, 155, 35, 44 });
 	jumpLeftAnim.speed = 0.1f;
 
 	return true;
@@ -111,30 +111,46 @@ bool Player::Update()
 		{
 			numJumps++;
 			enableJump = false;
+			hasJumped = true;
 			float impulse = pbody->body->GetMass() * 6.0f;
 			pbody->body->ApplyLinearImpulse(b2Vec2(0, -impulse), pbody->body->GetWorldCenter(), true);
 		}
 	}
+
+	if (hasJumped && movingRight)
+		currentAnimation = &jumpRightAnim;
+	else if (hasJumped && !movingRight)
+		currentAnimation = &jumpLeftAnim;
+
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
 		//
 	}
 		
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		moveState = MS_LEFT;
-		currentAnimation = &walkLeftAnim;
+		if (!hasJumped)
+		{
+			currentAnimation = &walkLeftAnim;
+		}
+		movingRight = false;
 	}
+
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
 		moveState = MS_STOP;
-		currentAnimation = &idleAnim;
+		//currentAnimation = &idleAnim;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		moveState = MS_RIGHT;
-		currentAnimation = &walkRightAnim;
+		if (!hasJumped)
+		{
+			currentAnimation = &walkRightAnim;
+		}
+		movingRight = true;
 	}
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
 		moveState = MS_STOP;
-		currentAnimation = &idleAnim;
+		//currentAnimation = &idleAnim;
 	}
 
 	b2Vec2 vel = pbody->body->GetLinearVelocity();
@@ -198,6 +214,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		case ColliderType::PLATFORM:
 			LOG("Collision PLATFORM");
 			enableJump = true;
+			hasJumped = false;
+			currentAnimation = &idleAnim;
 			numJumps = 0;
 			break;
 		case ColliderType::DEATH:
