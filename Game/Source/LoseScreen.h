@@ -1,5 +1,5 @@
-#ifndef __ENDINGSCREEN_H__
-#define __ENDINGSCREEN_H__
+#ifndef __LOSESCREEN_H__
+#define __LOSESCREEN_H__
 
 #include "Module.h"
 #include "Player.h"
@@ -7,14 +7,14 @@
 
 struct SDL_Texture;
 
-class EndingScreen : public Module
+class LoseScreen : public Module
 {
 public:
 
-	EndingScreen(bool startEnabled);
+	LoseScreen(bool startEnabled);
 
 	// Destructor
-	virtual ~EndingScreen();
+	virtual ~LoseScreen();
 
 	// Called before render is available
 	bool Awake(pugi::xml_node& config);
@@ -42,4 +42,4 @@ private:
 
 };
 
-#endif // __ENDINGSCREEN_H__
+#endif // __LOSESCREEN_H__

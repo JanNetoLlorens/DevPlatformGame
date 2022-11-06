@@ -7,49 +7,47 @@
 #include "Scene.h"
 #include "EntityManager.h"
 #include "Map.h"
-#include "EndingScreen.h"
+#include "LoseScreen.h"
 #include "ModuleFadeToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-EndingScreen::EndingScreen(bool startEnabled) : Module(startEnabled)
+LoseScreen::LoseScreen(bool startEnabled) : Module(startEnabled)
 {
 	name.Create("introScreen");
 }
 
 // Destructor
-EndingScreen::~EndingScreen()
+LoseScreen::~LoseScreen()
 {}
 
 // Called before render is available
-bool EndingScreen::Awake(pugi::xml_node& config)
+bool LoseScreen::Awake(pugi::xml_node& config)
 {
-	LOG("Loading EndingScreen");
+	LOG("Loading LoseScreen");
 	bool ret = true;
 
 	return ret;
 }
 
 // Called before the first frame
-bool EndingScreen::Start()
+bool LoseScreen::Start()
 {
-	img = app->tex->Load(app->LoadConfigFile().child("endingScreen").child("img").attribute("texturepath").as_string());
+	img = app->tex->Load(app->LoadConfigFile().child("LoseScreen").child("img").attribute("texturepath").as_string());
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
-	app->render->camera.x = 0;
-	app->render->camera.y = 0;
 
 	return true;
 }
 
 // Called each loop iteration
-bool EndingScreen::PreUpdate()
+bool LoseScreen::PreUpdate()
 {
 	return true;
 }
 
 // Called each loop iteration
-bool EndingScreen::Update(float dt)
+bool LoseScreen::Update(float dt)
 {
 	app->render->DrawTexture(img, 0, 20); // Placeholder not needed any more
 
@@ -57,7 +55,7 @@ bool EndingScreen::Update(float dt)
 }
 
 // Called each loop iteration
-bool EndingScreen::PostUpdate()
+bool LoseScreen::PostUpdate()
 {
 	bool ret = true;
 
@@ -68,9 +66,9 @@ bool EndingScreen::PostUpdate()
 }
 
 // Called before quitting
-bool EndingScreen::CleanUp()
+bool LoseScreen::CleanUp()
 {
-	LOG("Freeing EndingScreen");
+	LOG("Freeing LoseScreen");
 
 	return true;
 }

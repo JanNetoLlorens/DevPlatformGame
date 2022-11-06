@@ -34,8 +34,8 @@
     <item x="1424" y="128" texturepath="Assets/Textures/goldCoin.png"/>
   </scene>
   <endingScreen>
-    <img texturepath="Assets/Textures/Win.png"/>
-	<img texturepath="Assets/Textures/lose.png"/>
+    <imgWin texturepath="Assets/Textures/Win.png"/>
+	<imgLose texturepath="Assets/Textures/lose.png"/>
 	
 	  
   </endingScreen>

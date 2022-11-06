@@ -18,7 +18,7 @@ class Audio;
 class LogoScreen;
 class IntroScreen;
 class Scene;
-class EndingScreen;
+class LoseScreen;
 class WinScreen;
 class EntityManager;
 class Map;
@@ -95,7 +95,7 @@ public:
 	LogoScreen* logoScreen;
 	IntroScreen* introScreen;
 	Scene* scene;
-	EndingScreen* endingScreen;
+	LoseScreen* lose;
 	WinScreen* winScreen;
 	EntityManager* entityManager;
 	Map* map;
