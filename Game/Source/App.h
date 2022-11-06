@@ -19,6 +19,7 @@ class LogoScreen;
 class IntroScreen;
 class Scene;
 class EndingScreen;
+class WinScreen;
 class EntityManager;
 class Map;
 class ModuleFadeToBlack;
@@ -95,6 +96,7 @@ public:
 	IntroScreen* introScreen;
 	Scene* scene;
 	EndingScreen* endingScreen;
+	WinScreen* winScreen;
 	EntityManager* entityManager;
 	Map* map;
 	ModuleFadeToBlack* fade;
