@@ -1,6 +1,8 @@
-# {Project Name}
+# One Piece - Adventure Island -
 
 ## Description
+
+
 
 {project description}
 
@@ -13,14 +15,15 @@
  
 ## Controls
 
- - {ControlsScheme}
+ - W -> Walk to the Left
+ - D -> Walk to the right
+ - Space Bar -> Jump (If pressed again, does a doble jump)
 
 ## Developers
 
- - {Dev01} - {Role(s)}
- - {Dev02} - {Role(s)}
- - {Dev03} - {Role(s)}
- - {Dev04} - {Role(s)}
+ - Jan Neto: hhtps://github.com/JanNetoLlorens
+ - Hèctor Garcia: https://github.com/Neidragon
+ 
 
 ## License
 
