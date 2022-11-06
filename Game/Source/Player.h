@@ -54,6 +54,7 @@ private:
 	Animation walkLeftAnim;
 	Animation jumpRightAnim;
 	Animation jumpLeftAnim;
+	Animation dieAnim;
 
 	bool dead;
 	bool win;

@@ -9,12 +9,13 @@
 	<introScreen />
 	<scene />
 	<introScreen />
+	<WinScreen />
 	<entitymanager>
-		<player x="121" y="319" />
+		<player x="216" y="254" />
 	</entitymanager>
 	<map />
 	<:anonymous />
 	<renderer>
-		<camera x="27" y="-60" />
+		<camera x="0" y="0" />
 	</renderer>
 </save_state>

@@ -73,6 +73,16 @@ bool Player::Awake() {
 	jumpLeftAnim.PushBack({ 0, 198, 35, 44 });
 	jumpLeftAnim.speed = 0.1f;
 
+	// die
+	dieAnim.PushBack({ 0, 240, 18, 32 });
+	dieAnim.PushBack({ 28, 240, 18, 32 });
+	dieAnim.PushBack({ 56, 240, 18, 32 });
+	dieAnim.PushBack({ 84, 240, 18, 32 });
+	dieAnim.PushBack({ 110, 240, 18, 32 });
+	dieAnim.PushBack({ 136, 240, 18, 32 });
+	dieAnim.loop = false;
+	dieAnim.speed = 0.1f;
+
 	return true;
 }
 
@@ -180,26 +190,27 @@ bool Player::Update()
 		pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(parameters.attribute("x").as_int()), PIXEL_TO_METERS(parameters.attribute("y").as_int())), 0);
 	}
 
-	if (!dead)
+	if(dead)
 	{
-		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		app->render->DrawTexture(texture, position.x, position.y, &rect);
-	}
-	else if(dead)
-	{
-		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 0);
-		app->entityManager->Disable();
-		app->map->CleanUp();
+		currentAnimation = &dieAnim;
+		if (dieAnim.HasFinished() == true)
+		{
+			app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 20);
+			app->entityManager->Disable();
+		}
+
 	}
 
 	if (win)
 	{
 		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->winScreen, 0);
 		app->entityManager->Disable();
-		app->map->CleanUp();
 	}
+	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	
 	currentAnimation->Update();
+
+	app->render->DrawTexture(texture, position.x, position.y, &rect);
 
 	return true;
 }
