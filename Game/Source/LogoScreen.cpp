@@ -50,7 +50,7 @@ bool LogoScreen::PreUpdate()
 // Called each loop iteration
 bool LogoScreen::Update(float dt)
 {
-	app->render->DrawTexture(img, 0, 20); // Placeholder not needed any more
+	app->render->DrawTexture(img, 0, -10); // Placeholder not needed any more
 
 	app->fade->FadeToBlack(this, (Module*)app->introScreen, 120);
 
