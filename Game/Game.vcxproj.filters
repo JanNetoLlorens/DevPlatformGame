@@ -52,7 +52,7 @@
     <ClCompile Include="Source\IntroScreen.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EndingScreen.cpp">
+    <ClCompile Include="Source\LoseScreen.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\ModuleFadeToBlack.cpp">
@@ -141,7 +141,7 @@
     <ClInclude Include="Source\IntroScreen.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EndingScreen.h">
+    <ClInclude Include="Source\LoseScreen.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\ModuleFadeToBlack.h">

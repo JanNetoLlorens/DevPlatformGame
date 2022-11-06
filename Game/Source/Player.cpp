@@ -187,14 +187,14 @@ bool Player::Update()
 	}
 	else if(dead)
 	{
-		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->endingScreen, 0);
+		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 0);
 		app->entityManager->Disable();
 		app->map->CleanUp();
 	}
 
 	if (win)
 	{
-		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->endingScreen, 0);
+		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->winScreen, 0);
 		app->entityManager->Disable();
 		app->map->CleanUp();
 	}

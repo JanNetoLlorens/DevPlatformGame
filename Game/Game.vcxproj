@@ -95,7 +95,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\EndingScreen.cpp" />
+    <ClCompile Include="Source\LoseScreen.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\IntroScreen.cpp" />
     <ClCompile Include="Source\Item.cpp" />
@@ -114,7 +114,7 @@
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\WinScreen.cpp" />
     <ClInclude Include="Source\Animation.h" />
-    <ClInclude Include="Source\EndingScreen.h" />
+    <ClInclude Include="Source\LoseScreen.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
     <ClInclude Include="Source\IntroScreen.h" />
