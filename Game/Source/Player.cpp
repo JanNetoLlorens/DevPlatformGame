@@ -42,35 +42,35 @@ bool Player::Awake() {
 	idleAnim.speed = 0.1f;
 	
 	// right walk
-	walkRightAnim.PushBack({ 0, 39, 33, 36 });
-	walkRightAnim.PushBack({ 33, 39, 33, 36 });
-	walkRightAnim.PushBack({ 66, 39, 33, 36 });
-	walkRightAnim.PushBack({ 99, 39, 33, 36 });
-	walkRightAnim.PushBack({ 132, 39, 33, 36 });
-	walkRightAnim.PushBack({ 165, 39, 33, 36 });
+	walkRightAnim.PushBack({ 0, 78, 33, 36 });
+	walkRightAnim.PushBack({ 33, 78, 33, 36 });
+	walkRightAnim.PushBack({ 66, 78, 33, 36 });
+	walkRightAnim.PushBack({ 99, 78, 33, 36 });
+	walkRightAnim.PushBack({ 132, 78, 33, 36 });
+	walkRightAnim.PushBack({ 165, 78, 33, 36 });
 	walkRightAnim.speed = 0.1f;
 
 	// left walk
-	walkLeftAnim.PushBack({ 0, 78, 33, 36 });
-	walkLeftAnim.PushBack({ 33, 78, 33, 36 });
-	walkLeftAnim.PushBack({ 66, 78, 33, 36 });
-	walkLeftAnim.PushBack({ 99, 78, 33, 36 });
-	walkLeftAnim.PushBack({ 132, 78, 33, 36 });
-	walkLeftAnim.PushBack({ 165, 78, 33, 36 });
+	walkLeftAnim.PushBack({ 165, 114, 33, 36 });
+	walkLeftAnim.PushBack({ 132, 114, 33, 36 });
+	walkLeftAnim.PushBack({ 99, 114, 33, 36 });
+	walkLeftAnim.PushBack({ 66, 114, 33, 36 });
+	walkLeftAnim.PushBack({ 33, 114, 33, 36 });
+	walkLeftAnim.PushBack({ 0, 114, 33, 36 });
 	walkLeftAnim.speed = 0.1f;
 
 	// jump right
-	jumpRightAnim.PushBack({ 0, 111, 35, 44 });
-	jumpRightAnim.PushBack({ 35, 111, 35, 44 });
-	jumpRightAnim.PushBack({ 70, 111, 35, 44 });
-	jumpRightAnim.PushBack({ 105, 111, 35, 44 });
+	jumpRightAnim.PushBack({ 0, 150, 35, 44 });
+	jumpRightAnim.PushBack({ 35, 150, 35, 44 });
+	jumpRightAnim.PushBack({ 70, 150, 35, 44 });
+	jumpRightAnim.PushBack({ 105, 150, 35, 44 });
 	jumpRightAnim.speed = 0.1f;
 
 	// jump left
-	jumpLeftAnim.PushBack({ 105, 155, 35, 44 });
-	jumpLeftAnim.PushBack({ 70, 155, 35, 44 });
-	jumpLeftAnim.PushBack({ 35, 155, 35, 44 });
-	jumpLeftAnim.PushBack({ 0, 155, 35, 44 });
+	jumpLeftAnim.PushBack({ 105, 198, 35, 44 });
+	jumpLeftAnim.PushBack({ 70, 198, 35, 44 });
+	jumpLeftAnim.PushBack({ 35, 198, 35, 44 });
+	jumpLeftAnim.PushBack({ 0, 198, 35, 44 });
 	jumpLeftAnim.speed = 0.1f;
 
 	return true;
