@@ -36,6 +36,8 @@ bool EndingScreen::Start()
 {
 	img = app->tex->Load(app->LoadConfigFile().child("endingScreen").child("img").attribute("texturepath").as_string());
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
+	app->render->camera.x = 0;
+	app->render->camera.y = 0;
 
 	return true;
 }
