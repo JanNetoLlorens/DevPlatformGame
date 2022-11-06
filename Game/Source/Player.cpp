@@ -185,8 +185,8 @@ bool Player::Update()
 	}
 	else
 	{
-	//	app->entityManager->Disable();
-		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->introScreen, 0);
+		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->endingScreen, 0);
+		app->entityManager->Disable();
 		app->map->CleanUp();
 	}
 	

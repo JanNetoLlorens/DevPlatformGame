@@ -8,6 +8,7 @@
 #include "EntityManager.h"
 #include "Map.h"
 #include "EndingScreen.h"
+#include "ModuleFadeToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"

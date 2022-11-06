@@ -57,13 +57,10 @@ bool IntroScreen::Update(float dt)
 	app->render->DrawTexture(img, 0, 45); // Placeholder not needed any more
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
-	{
 		printedRight = true;
-	}
+	
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
-	{
 		printedRight = false;
-	}
 
 	if(!printedRight)
 		app->render->DrawTexture(berry, 460, 590);
