@@ -30,7 +30,7 @@
     <berry texturepath="Assets/Textures/Berry.png"/>
   </introScreen>
   <scene>
-    <player x="150" y="600" texturepath="Assets/Textures/Ruffy_SpriteSheet.png"/>
+    <player x="150" y="590" texturepath="Assets/Textures/Ruffy_SpriteSheet.png"/>
     <item x="1424" y="128" texturepath="Assets/Textures/goldCoin.png"/>
   </scene>
   <endingScreen>
