@@ -33,12 +33,12 @@
     <player x="150" y="590" texturepath="Assets/Textures/Ruffy_SpriteSheet.png"/>
     <item x="1424" y="128" texturepath="Assets/Textures/goldCoin.png"/>
   </scene>
-  <endingScreen>
-    <imgWin texturepath="Assets/Textures/Win.png"/>
-	<imgLose texturepath="Assets/Textures/lose.png"/>
-	
-	  
-  </endingScreen>
+  <winScreen>
+    <img texturepath="Assets/Textures/Win.png"/>
+  </winScreen>
+  <loseScreen>
+    <img texturepath="Assets/Textures/lose.png"/>
+  </loseScreen>
   
   <map>
     <mapfolder path="Assets/Maps/"/>

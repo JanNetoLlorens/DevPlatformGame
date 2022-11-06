@@ -34,8 +34,9 @@ bool WinScreen::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool WinScreen::Start()
 {
-	img = app->tex->Load(app->LoadConfigFile().child("endingScreen").child("img").attribute("texturepath").as_string());
+	img = app->tex->Load(app->LoadConfigFile().child("winScreen").child("img").attribute("texturepath").as_string());
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
+	
 	app->render->camera.x = 0;
 	app->render->camera.y = 0;
 
