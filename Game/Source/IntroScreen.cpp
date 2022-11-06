@@ -67,7 +67,7 @@ bool IntroScreen::Update(float dt)
 	else if (printedRight)
 		app->render->DrawTexture(berry, 810, 590);
 
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 	{
 		if (!printedRight)
 			app->fade->FadeToBlack(this, (Module*)app->scene, 0);

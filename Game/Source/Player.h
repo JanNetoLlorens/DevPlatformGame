@@ -56,6 +56,7 @@ private:
 	Animation jumpLeftAnim;
 
 	bool dead;
+	bool win;
 	bool movingRight;
 	bool hasJumped;
 

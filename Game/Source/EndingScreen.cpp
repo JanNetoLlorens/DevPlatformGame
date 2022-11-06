@@ -34,7 +34,7 @@ bool EndingScreen::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool EndingScreen::Start()
 {
-	//img = app->tex->Load("Assets/Textures/test.png");
+	img = app->tex->Load(app->LoadConfigFile().child("endingScreen").child("img").attribute("texturepath").as_string());
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 
 	return true;
@@ -49,7 +49,7 @@ bool EndingScreen::PreUpdate()
 // Called each loop iteration
 bool EndingScreen::Update(float dt)
 {
-	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
+	app->render->DrawTexture(img, 0, 20); // Placeholder not needed any more
 
 	return true;
 }

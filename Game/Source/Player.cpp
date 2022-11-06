@@ -83,6 +83,7 @@ bool Player::Start() {
 	currentAnimation = &idleAnim;
 
 	dead = false;
+	win = false;
 
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	pbody = app->physics->CreateCircle(position.x+16, position.y+16, 16, bodyType::DYNAMIC);
@@ -105,14 +106,14 @@ bool Player::Update()
 	// L07 DONE 5: Add physics to the player - updated player position using physics
 
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
-	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN) 
+	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) 
 	{
 		if (enableJump == true || numJumps < 2 )
 		{
 			numJumps++;
 			enableJump = false;
 			hasJumped = true;
-			float impulse = pbody->body->GetMass() * 6.0f;
+			float impulse = pbody->body->GetMass() * 5.0f;
 			pbody->body->ApplyLinearImpulse(b2Vec2(0, -impulse), pbody->body->GetWorldCenter(), true);
 		}
 	}
@@ -137,7 +138,7 @@ bool Player::Update()
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
 		moveState = MS_STOP;
-		//currentAnimation = &idleAnim;
+		currentAnimation = &idleAnim;
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
@@ -150,7 +151,7 @@ bool Player::Update()
 	}
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
 		moveState = MS_STOP;
-		//currentAnimation = &idleAnim;
+		currentAnimation = &idleAnim;
 	}
 
 	b2Vec2 vel = pbody->body->GetLinearVelocity();
@@ -183,7 +184,14 @@ bool Player::Update()
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		app->render->DrawTexture(texture, position.x, position.y, &rect);
 	}
-	else
+	else if(dead)
+	{
+		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->endingScreen, 0);
+		app->entityManager->Disable();
+		app->map->CleanUp();
+	}
+
+	if (win)
 	{
 		app->fade->FadeToBlack((Module*)app->scene, (Module*)app->endingScreen, 0);
 		app->entityManager->Disable();
@@ -224,6 +232,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 		case ColliderType::WIN:
 			LOG("Collision WIN");
+			win = true;
 			break;
 		case ColliderType::UNKNOWN:
 			LOG("Collision UNKNOWN");
