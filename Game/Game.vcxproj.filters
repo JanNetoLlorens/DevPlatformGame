@@ -13,9 +13,6 @@
     <ClCompile Include="Source\Audio.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EntityManager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Input.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -29,9 +26,6 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Physics.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Render.cpp">
@@ -60,6 +54,18 @@
     </ClCompile>
     <ClCompile Include="Source\WinScreen.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlyingEnemy.cpp">
+      <Filter>Source\Entity\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WalkingEnemy.cpp">
+      <Filter>Source\Entity\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EntityManager.cpp">
+      <Filter>Source\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Source\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,12 +105,6 @@
     <ClInclude Include="Source\Audio.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Entity.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EntityManager.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Input.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -118,9 +118,6 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Physics.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Player.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\Render.h">
@@ -150,6 +147,24 @@
     <ClInclude Include="Source\WinScreen.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Enemy.h">
+      <Filter>Source\Entity\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FlyingEnemy.h">
+      <Filter>Source\Entity\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WalkingEnemy.h">
+      <Filter>Source\Entity\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntityManager.h">
+      <Filter>Source\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Entity.h">
+      <Filter>Source\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>Source\Entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -163,6 +178,12 @@
     </Filter>
     <Filter Include="Source\Utils">
       <UniqueIdentifier>{2cad778a-d356-48b0-9fee-587f1bbb187e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Entity">
+      <UniqueIdentifier>{a338ddb6-9fee-40d4-973c-a60defaf32ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Entity\Enemy">
+      <UniqueIdentifier>{7ebc0047-c12d-4d8f-92ed-e0e84ad201e3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -95,6 +95,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\FlyingEnemy.cpp" />
     <ClCompile Include="Source\LoseScreen.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\IntroScreen.cpp" />
@@ -111,9 +112,12 @@
     <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
+    <ClCompile Include="Source\WalkingEnemy.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\WinScreen.cpp" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Enemy.h" />
+    <ClInclude Include="Source\FlyingEnemy.h" />
     <ClInclude Include="Source\LoseScreen.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
@@ -132,6 +136,7 @@
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\Render.h" />
     <ClInclude Include="Source\Textures.h" />
+    <ClInclude Include="Source\WalkingEnemy.h" />
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Defs.h" />
     <ClInclude Include="Source\List.h" />
