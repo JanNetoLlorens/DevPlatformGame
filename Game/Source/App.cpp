@@ -14,6 +14,7 @@
 #include "LogoScreen.h"
 #include "IntroScreen.h"
 #include "ModuleFadeToBlack.h"
+#include "Debug.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -41,6 +42,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	entityManager = new EntityManager(false);
 	map = new Map(true);
 	fade = new ModuleFadeToBlack(true);
+	debug = new Debug(true);
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -58,6 +60,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(entityManager);
 	AddModule(map);
 	AddModule(fade);
+	AddModule(debug);
 
 	// Render last to swap buffer
 	AddModule(render);

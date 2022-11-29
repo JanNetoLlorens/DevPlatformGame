@@ -81,11 +81,19 @@ public:
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
 
+	b2World* GetWorld(b2World* w) { w = world; return w; }
+public:
+
+	b2World* world;
+
+	b2Body* ground = nullptr;
+
+	//Mouse
+	b2MouseJoint* mouse_joint = nullptr;
+	b2Body* mouse_body = nullptr;
+
 private:
 
-	// Debug mode
-	bool debug;
-
 	// Box2D World
-	b2World* world;
+	//b2World* world;
 };
