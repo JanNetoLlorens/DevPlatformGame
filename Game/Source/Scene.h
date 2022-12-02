@@ -39,6 +39,8 @@ public:
 	//L02: DONE 3: Declare a Player attribute 
 	Player* player;
 
+	uint Susume_fx;
+
 private:
 	SDL_Texture* img;
 
