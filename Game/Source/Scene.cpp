@@ -96,6 +96,22 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		app->render->camera.x -= 3;
 
+	if (player->position.x < 512)
+	{
+		app->render->camera.x = app->render->camera.x;
+	}
+	else {
+		app->render->camera.x = -player->position.x * app->win->GetScale() + 512;
+	}
+
+	if (player->position.y < 300)
+	{
+		app->render->camera.y = app->render->camera.y;
+	}
+	else {
+		app->render->camera.y = -player->position.y * app->win->GetScale() + 384;
+	}
+
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 
 	// Draw map
