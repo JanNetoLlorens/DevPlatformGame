@@ -67,9 +67,6 @@
     <ClCompile Include="Source\Scene.cpp">
       <Filter>Source\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ModuleDebug.cpp">
-      <Filter>Source\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Debug.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
@@ -173,9 +170,6 @@
     </ClInclude>
     <ClInclude Include="Source\Scene.h">
       <Filter>Source\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ModuleDebug.h">
-      <Filter>Source\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Debug.h">
       <Filter>Source\Core</Filter>

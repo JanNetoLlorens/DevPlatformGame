@@ -14,6 +14,8 @@ enum _moveState {
 	MS_STOP,
 	MS_LEFT,
 	MS_RIGHT,
+	MS_UP,
+	MS_DOWN,
 };
 
 class Player : public Entity
