@@ -30,11 +30,9 @@ bool ModuleDebug::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		drawPhysics = !drawPhysics;
 
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		godMode = !godMode;
 
-	
-	
-
-	
 	return true;
 }
 

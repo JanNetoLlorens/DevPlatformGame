@@ -24,6 +24,7 @@ public:
 	//flags
 	bool drawDebug = false;
 	bool drawPhysics = false;
+	bool godMode = false;
 	bool variables = false;
 	bool lightsON = false;
 	bool musicON = false;
