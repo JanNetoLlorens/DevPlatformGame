@@ -73,6 +73,9 @@
     <ClCompile Include="Source\Debug.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Pathfinding.cpp">
+      <Filter>Source\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Defs.h">
@@ -176,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="Source\Debug.h">
       <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Pathfinding.h">
+      <Filter>Source\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
