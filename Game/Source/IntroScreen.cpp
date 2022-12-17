@@ -36,6 +36,8 @@ bool IntroScreen::Start()
 {
 	img = app->tex->Load(app->LoadConfigFile().child("introScreen").child("img").attribute("texturepath").as_string());
 	berry = app->tex->Load(app->LoadConfigFile().child("introScreen").child("berry").attribute("texturepath").as_string());
+
+	app->win->scale = 1;
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 
 	//launch_fx = app->audio->LoadFx("Wahssets/Audio/Waluigi_Time.wav");

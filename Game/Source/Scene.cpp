@@ -36,6 +36,8 @@ bool Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool Scene::Start()
 {
+	app->win->scale = 2;
+
 	for (pugi::xml_node itemNode = app->LoadConfigFile().child("scene").child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
 	{
 		Item* item = (Item*)app->entityManager->CreateEntity(EntityType::ITEM);
@@ -98,7 +100,7 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		app->render->camera.x -= 3;
 
-	if (player->position.x < 512)
+	/*if (player->position.x < 512)
 	{
 		app->render->camera.x = app->render->camera.x;
 	}
@@ -112,12 +114,32 @@ bool Scene::Update(float dt)
 	}
 	else {
 		app->render->camera.y = -player->position.y * app->win->GetScale() + 384;
-	}
+	}*/
+
+	//camera
+	app->render->camera.x = -player->position.x * app->win->GetScale() + 512;
+	app->render->camera.y = -player->position.y * app->win->GetScale() + 384;
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 
 	// Draw map
 	app->map->Draw();
+
+	//World to map test
+	int mouseX, mouseY;
+	app->input->GetMousePosition(mouseX, mouseY);
+	iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x, mouseY - app->render->camera.y);
+
+	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:[%d,%d]",
+		app->map->mapData.width,
+		app->map->mapData.height,
+		app->map->mapData.tileWidth,
+		app->map->mapData.tileHeight,
+		app->map->mapData.tilesets.Count(),
+		mouseTile.x,
+		mouseTile.y);
+
+	app->win->SetTitle(title.GetString());
 
 	return true;
 }

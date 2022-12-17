@@ -38,6 +38,8 @@ bool LogoScreen::Start()
 	img = app->tex->Load(app->LoadConfigFile().child("logoScreen").child("img").attribute("texturepath").as_string());
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 
+	app->win->scale = 1;
+
 	return true;
 }
 

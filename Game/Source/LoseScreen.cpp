@@ -39,6 +39,8 @@ bool LoseScreen::Start()
 	app->render->camera.x = 0;
 	app->render->camera.y = 0;
 
+	app->win->scale = 1;
+
 	return true;
 }
 
