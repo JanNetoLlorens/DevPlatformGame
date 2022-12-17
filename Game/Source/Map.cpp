@@ -56,11 +56,11 @@ bool Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 
                 int tileId = layer->Get(x, y);
                 TileSet* tileset = (tileId > 0) ? GetTilesetFromTileId(tileId) : NULL;
-
                 if (tileset != NULL)
                 {
                     //According to the mapType use the ID of the tile to set the walkability value
-                   map[i] = 1;
+                    if (tileId == 249) map[i] = 1;
+                    else map[i] = 0;
                 }
                 else {
                     LOG("CreateWalkabilityMap: Invalid tileset found");

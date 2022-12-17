@@ -37,7 +37,7 @@ bool Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool Scene::Start()
 {
-	app->win->scale = 2;
+	app->win->scale = 1;
 
 	for (pugi::xml_node itemNode = app->LoadConfigFile().child("scene").child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
 	{
@@ -191,8 +191,6 @@ bool Scene::Update(float dt)
 		app->map->mapData.tilesets.Count(),
 		mouseTile.x,
 		mouseTile.y);
-		LOG("mouse x = %d", mouseTile.x);
-		LOG("mouse y = %d", mouseTile.y);
 
 	app->win->SetTitle(title.GetString());
 
