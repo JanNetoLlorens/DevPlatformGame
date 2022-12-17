@@ -121,7 +121,7 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		app->render->camera.x -= 3;
 
-	/*if (player->position.x < 512)
+	if (player->position.x < 512/app->win->GetScale())
 	{
 		app->render->camera.x = app->render->camera.x;
 	}
@@ -129,17 +129,13 @@ bool Scene::Update(float dt)
 		app->render->camera.x = -player->position.x * app->win->GetScale() + 512;
 	}
 
-	if (player->position.y < 300)
+	if (player->position.y < 384/app->win->GetScale())
 	{
 		app->render->camera.y = app->render->camera.y;
 	}
 	else {
 		app->render->camera.y = -player->position.y * app->win->GetScale() + 384;
-	}*/
-
-	//camera
-	app->render->camera.x = -player->position.x * app->win->GetScale() + 512;
-	app->render->camera.y = -player->position.y * app->win->GetScale() + 384;
+	}
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 
@@ -153,7 +149,7 @@ bool Scene::Update(float dt)
 	iPoint mouseTile = iPoint(0, 0);
 
 	
-	mouseTile = app->map->WorldToMap((mouseX - app->render->camera.x)*2, (mouseY - app->render->camera.y)*2);
+	mouseTile = app->map->WorldToMap((mouseX - app->render->camera.x), (mouseY - app->render->camera.y));
 	
 
 	iPoint highlightedTileWorld = app->map->MapToWorld(mouseTile.x, mouseTile.y);

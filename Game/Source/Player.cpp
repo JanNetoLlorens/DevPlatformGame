@@ -11,6 +11,7 @@
 #include "ModuleFadeToBlack.h"
 #include "EntityManager.h"
 #include "Map.h"
+#include "Debug.h"
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -113,77 +114,131 @@ bool Player::Start() {
 
 bool Player::Update()
 {
-
-	// L07 DONE 5: Add physics to the player - updated player position using physics
-
-	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) 
+	if (!app->debug->godMode)
 	{
-		if (enableJump == true || numJumps < 2 )
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
-			numJumps++;
-			enableJump = false;
-			hasJumped = true;
-			float impulse = pbody->body->GetMass() * 5.0f;
-			pbody->body->ApplyLinearImpulse(b2Vec2(0, -impulse), pbody->body->GetWorldCenter(), true);
+			if (enableJump == true || numJumps < 2)
+			{
+				numJumps++;
+				enableJump = false;
+				hasJumped = true;
+				float impulse = pbody->body->GetMass() * 5.0f;
+				pbody->body->ApplyLinearImpulse(b2Vec2(0, -impulse), pbody->body->GetWorldCenter(), true);
+			}
 		}
-	}
 
-	if (hasJumped && movingRight)
-		currentAnimation = &jumpRightAnim;
-	else if (hasJumped && !movingRight)
-		currentAnimation = &jumpLeftAnim;
+		if (hasJumped && movingRight)
+			currentAnimation = &jumpRightAnim;
+		else if (hasJumped && !movingRight)
+			currentAnimation = &jumpLeftAnim;
 
-	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		//
-	}
-		
-	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		moveState = MS_LEFT;
-		if (!hasJumped)
+		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+			//
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+			moveState = MS_LEFT;
+			if (!hasJumped)
+			{
+				currentAnimation = &walkLeftAnim;
+			}
+			movingRight = false;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
+			moveState = MS_STOP;
+			currentAnimation = &idleAnim;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+			moveState = MS_RIGHT;
+			if (!hasJumped)
+			{
+				currentAnimation = &walkRightAnim;
+			}
+			movingRight = true;
+		}
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
+			moveState = MS_STOP;
+			currentAnimation = &idleAnim;
+		}
+
+		b2Vec2 vel = pbody->body->GetLinearVelocity();
+		float desiredVel = 0;
+
+		switch (moveState)
 		{
-			currentAnimation = &walkLeftAnim;
+		case MS_LEFT:  desiredVel = -5; break;
+		case MS_STOP:  desiredVel = 0; break;
+		case MS_RIGHT: desiredVel = 5; break;
 		}
-		movingRight = false;
-	}
 
-	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
-		moveState = MS_STOP;
-		currentAnimation = &idleAnim;
-	}
+		//Set the velocity of the pbody of the player
+		//pbody->body->SetLinearVelocity(vel);
+		float velChange = desiredVel - vel.x;
+		float impulse = pbody->body->GetMass() * velChange; //disregard time factor
+		pbody->body->ApplyLinearImpulse(b2Vec2(impulse, 0), pbody->body->GetWorldCenter(), true);
 
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		moveState = MS_RIGHT;
-		if (!hasJumped)
-		{
-			currentAnimation = &walkRightAnim;
-		}
-		movingRight = true;
+		//Update player position in pixels
+		position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
+		position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
 	}
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
-		moveState = MS_STOP;
-		currentAnimation = &idleAnim;
-	}
-
-	b2Vec2 vel = pbody->body->GetLinearVelocity();
-	float desiredVel = 0;
-
-	switch (moveState)
+	else if (app->debug->godMode)
 	{
-	case MS_LEFT:  desiredVel = -5; break;
-	case MS_STOP:  desiredVel = 0; break;
-	case MS_RIGHT: desiredVel = 5; break;
+		b2Vec2 desiredVel;
+
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) 
+		{
+			moveState = MS_UP;
+		}
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_UP)
+		{
+			moveState = MS_STOP;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		{
+			moveState = MS_LEFT;
+		}
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
+		{
+			moveState = MS_STOP;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		{
+			moveState = MS_DOWN;
+		}
+		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_UP)
+		{
+			moveState = MS_STOP;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+			moveState = MS_RIGHT;
+		}
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
+		{
+			moveState = MS_STOP;
+		}
+
+		switch (moveState)
+		{
+		case MS_UP:		desiredVel.x = 0;	desiredVel.y = -5; break;
+		case MS_LEFT:	desiredVel.x = -5;	desiredVel.y = 0; break;
+		case MS_DOWN:	desiredVel.x = 0;	desiredVel.y = 5; break;
+		case MS_RIGHT:	desiredVel.x = 5;	desiredVel.y = 0; break;
+		case MS_STOP:	desiredVel.x = 0;	desiredVel.y = 0; break;
+		}
+
+		pbody->body->SetLinearVelocity(desiredVel);
+
+		//Update player position in pixels
+		position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
+		position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
 	}
-
-	//Set the velocity of the pbody of the player
-	//pbody->body->SetLinearVelocity(vel);
-	float velChange = desiredVel - vel.x;
-	float impulse = pbody->body->GetMass() * velChange; //disregard time factor
-	pbody->body->ApplyLinearImpulse(b2Vec2(impulse, 0), pbody->body->GetWorldCenter(), true);
-
-	//Update player position in pixels
-	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
-	position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 	{
