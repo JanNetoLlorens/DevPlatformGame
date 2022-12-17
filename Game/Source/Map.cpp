@@ -60,9 +60,7 @@ bool Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
                 if (tileset != NULL)
                 {
                     //According to the mapType use the ID of the tile to set the walkability value
-                    if (mapData.type == MapTypes::MAPTYPE_ISOMETRIC && tileId == 25) map[i] = 1;
-                    else if (mapData.type == MapTypes::MAPTYPE_ORTHOGONAL && tileId == 50) map[i] = 1;
-                    else map[i] = 0;
+                   map[i] = 1;
                 }
                 else {
                     LOG("CreateWalkabilityMap: Invalid tileset found");
@@ -196,16 +194,8 @@ iPoint Map::WorldToMap(int x, int y)
 {
     iPoint ret(0, 0);
 
-    if (mapData.type == MAPTYPE_ORTHOGONAL)
-    {
-        ret.x = x / mapData.tileWidth;
-        ret.y = y / mapData.tileHeight;
-    }
-    else
-    {
-        LOG("Unknown map type");
-        ret.x = x; ret.y = y;
-    }
+    ret.x = x / mapData.tileWidth;
+    ret.y = y / mapData.tileHeight;
 
     return ret;
 }

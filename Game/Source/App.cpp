@@ -14,6 +14,7 @@
 #include "LogoScreen.h"
 #include "IntroScreen.h"
 #include "ModuleFadeToBlack.h"
+#include "Pathfinding.h"
 #include "Debug.h"
 
 #include "Defs.h"
@@ -34,6 +35,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio(true);
 	//L07 DONE 2: Add Physics module
 	physics = new Physics(true);
+	pathfinding = new PathFinding(false);
 	logoScreen = new LogoScreen(true);
 	introScreen = new IntroScreen(false);
 	scene = new Scene(false);
