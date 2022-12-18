@@ -14,6 +14,7 @@
 #include "EntityManager.h"
 #include "Map.h"
 #include "Pathfinding.h"
+#include "Debug.h"
 
 FlyingEnemy::FlyingEnemy() : Enemy(EntityType::FLYING_ENEMY)
 {
@@ -95,16 +96,15 @@ bool FlyingEnemy::Update()
 		app->pathfinding->CreatePath(mapPos, playerDest);
 	}
 	//Get the latest calculated path and draw
-	const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
-	for (uint i = 0; i < path->Count(); ++i)
+	if (!app->debug->drawPhysics)
 	{
-		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		app->render->DrawTexture(pathfindingTexture, pos.x, pos.y);
+		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
+		for (uint i = 0; i < path->Count(); ++i)
+		{
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+			app->render->DrawTexture(pathfindingTexture, pos.x, pos.y);
+		}
 	}
-
-	// L12: Debug pathfinding
-	/*iPoint originScreen = app->map->MapToWorld(origin.x, origin.y);
-	app->render->DrawTexture(originTex, originScreen.x, originScreen.y);*/
 
 	//movement
 	distFromPlayer.x = app->scene->player->position.x - position.x;
@@ -188,19 +188,19 @@ void FlyingEnemy::OnCollision(PhysBody* physA, PhysBody* physB) {
 
 bool FlyingEnemy::LoadState(pugi::xml_node& data)
 {
-	/*position.x = data.child("player").attribute("x").as_int();
-	position.y = data.child("player").attribute("y").as_int();
+	position.x = data.child("flyingEnemy").attribute("x").as_int();
+	position.y = data.child("flyingEnemy").attribute("y").as_int();
 	b2Vec2 pos(position.x, position.y);
-	pbody->body->SetTransform(PIXEL_TO_METERS(pos), 0);*/
+	pbody->body->SetTransform(PIXEL_TO_METERS(pos), 0);
 
 	return true;
 }
 bool FlyingEnemy::SaveState(pugi::xml_node& data)
 {
-	/*pugi::xml_node play = data.append_child("player");
+	pugi::xml_node play = data.append_child("flyingEnemy");
 
 	play.append_attribute("x") = position.x;
-	play.append_attribute("y") = position.y;*/
+	play.append_attribute("y") = position.y;
 
 	return true;
 }
