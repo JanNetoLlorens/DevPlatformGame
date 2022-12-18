@@ -295,7 +295,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 		case ColliderType::DEATH:
 			LOG("Collision DEATH");
-			dead = true;
+			if (!app->debug->godMode)
+				dead = true;
 			break;
 		case ColliderType::WIN:
 			LOG("Collision WIN");
@@ -303,11 +304,13 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 		case ColliderType::WALKING_ENEMY:
 			LOG("Walking enemy kills you");
-			dead = true;
+			if (!app->debug->godMode)
+				dead = true;
 			break;
 		case ColliderType::FLYING_ENEMY:
 			LOG("Flying enemy kills you");
-			dead = true;
+			if (!app->debug->godMode)
+				dead = true;
 			break;
 		case ColliderType::UNKNOWN:
 			LOG("Collision UNKNOWN");
