@@ -14,8 +14,6 @@ enum WalkingEnemyMoveState {
 	MS_GE_STOP,
 	MS_GE_LEFT,
 	MS_GE_RIGHT,
-	MS_GE_UP,
-	MS_GE_DOWN,
 };
 
 class WalkingEnemy : public Enemy

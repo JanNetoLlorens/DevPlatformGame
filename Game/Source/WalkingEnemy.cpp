@@ -136,11 +136,9 @@ bool WalkingEnemy::Update()
 		velocity.x = 0;
 		break;
 	case MS_GE_LEFT:
-		//move to left
 		velocity.x = -1.5f;
 		break;
 	case MS_GE_RIGHT:
-		//move to left
 		velocity.x = 1.5f;
 		break;
 	default:

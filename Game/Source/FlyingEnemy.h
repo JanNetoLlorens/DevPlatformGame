@@ -10,11 +10,17 @@
 
 struct SDL_Texture;
 
-//enum _moveState {
-//	MS_STOP,
-//	MS_LEFT,
-//	MS_RIGHT,
-//};
+enum FlyingEnemyMoveStateX {
+	MS_FE_STOPX,
+	MS_FE_LEFT,
+	MS_FE_RIGHT,
+};
+
+enum FlyingEnemyMoveStateY {
+	MS_FE_STOPY,
+	MS_FE_UP,
+	MS_FE_DOWN,
+};
 
 class FlyingEnemy : public Enemy
 {
@@ -47,25 +53,22 @@ private:
 	//L02: DONE 1: Declare enemy parameters
 	SDL_Texture* texture;
 	const char* texturePath;
+	SDL_Texture* pathfindingTexture;
+	const char* pathfindingTexturePath;
 
 	Animation* currentAnimation = nullptr;
 
 	Animation idleAnim;
-	Animation walkRightAnim;
-	Animation walkLeftAnim;
-	Animation jumpRightAnim;
-	Animation jumpLeftAnim;
 	Animation dieAnim;
 
-	bool dead;
-	bool movingRight;
-	bool hasJumped;
+	bool dead = false;
+	bool hasPatroledLeft = false;
+	bool movingRight = false;
 
 	// L07 DONE 5: Add physics to the enemy - declare a Physics body
-	/*PhysBody* pbody;
-	_moveState moveState;
-
-	int pickCoinFxId;
-	bool enableJump;
-	int numJumps;*/
+	PhysBody* pbody;
+	PhysBody* deathCollider;
+	FlyingEnemyMoveStateX moveStateX;
+	FlyingEnemyMoveStateY moveStateY;
+	PathType pathType;
 };

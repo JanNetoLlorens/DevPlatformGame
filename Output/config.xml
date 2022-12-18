@@ -32,8 +32,8 @@
   <scene>
     <player x="150" y="590" texturepath="Assets/Textures/Ruffy_SpriteSheet.png"/>
     <item x="1424" y="128" texturepath="Assets/Textures/goldCoin.png"/>
-    <flyingEnemy x="0" y="0" texturepath="Assets/Textures/flyingEnemy.png"/>
-    <walkingEnemy x="545" y="340" texturepath="Assets/Textures/groundEnemy.png" pathfinding_texturepath=""/>
+    <flyingEnemy x="480" y="128" texturepath="Assets/Textures/flyingEnemy.png" pathfinding_texturepath="path_square.png"/>
+    <walkingEnemy x="545" y="340" texturepath="Assets/Textures/groundEnemy.png" pathfinding_texturepath="path_square.png"/>
   </scene>
   <winScreen>
     <img texturepath="Assets/Textures/Win.png"/>
