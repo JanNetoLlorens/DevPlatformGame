@@ -49,6 +49,13 @@ bool Scene::Start()
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->parameters = app->LoadConfigFile().child("scene").child("player");
 
+	walkingEn = (WalkingEnemy*)app->entityManager->CreateEntity(EntityType::WALKING_ENEMY);
+	walkingEn->parameters = app->LoadConfigFile().child("scene").child("walkingEnemy");
+
+	flyingEn = (FlyingEnemy*)app->entityManager->CreateEntity(EntityType::FLYING_ENEMY);
+	flyingEn->parameters = app->LoadConfigFile().child("scene").child("flyingEnemy");
+
+
 	//img = app->tex->Load("Assets/Textures/test.png");
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 
@@ -61,7 +68,7 @@ bool Scene::Start()
 	if (retLoad) {
 		int w, h;
 		uchar* data = NULL;
-
+		
 		bool retWalkMap = app->map->CreateWalkabilityMap(w, h, &data);
 		if (retWalkMap) app->pathfinding->SetMap(w, h, data);
 

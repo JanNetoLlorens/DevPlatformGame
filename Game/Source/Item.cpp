@@ -16,6 +16,7 @@ Item::Item() : Entity(EntityType::ITEM)
 
 Item::~Item() {}
 
+
 bool Item::Awake() {
 
 	position.x = parameters.attribute("x").as_int();

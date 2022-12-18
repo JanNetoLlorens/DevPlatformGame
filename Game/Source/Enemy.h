@@ -6,7 +6,13 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "Point.h"
+#include "Physics.h"
 #include "SDL/include/SDL.h"
+
+enum PathType {
+	NEUTRAL,
+	AGRESSIVE,
+};
 
 class Enemy : public Entity
 {
@@ -21,6 +27,12 @@ public:
 
 
 public:
+
+	iPoint patrolLeft, patrolRight, playerDest, mapPos, distFromPlayer;
+	
+	b2Vec2 force, velocity;
+
+	float enemySpeed;
 
 private:
 	bool isAlive;

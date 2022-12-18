@@ -537,10 +537,10 @@
    <tile gid="155"/>
    <tile gid="155"/>
    <tile gid="155"/>
-   <tile gid="141"/>
-   <tile gid="174"/>
-   <tile gid="174"/>
-   <tile gid="142"/>
+   <tile gid="155"/>
+   <tile gid="155"/>
+   <tile gid="155"/>
+   <tile gid="155"/>
    <tile gid="155"/>
    <tile gid="156"/>
    <tile gid="40"/>
@@ -601,10 +601,10 @@
    <tile gid="155"/>
    <tile gid="155"/>
    <tile gid="155"/>
-   <tile gid="156"/>
-   <tile gid="21"/>
-   <tile gid="23"/>
-   <tile gid="154"/>
+   <tile gid="155"/>
+   <tile gid="155"/>
+   <tile gid="155"/>
+   <tile gid="155"/>
    <tile gid="155"/>
    <tile gid="156"/>
    <tile gid="40"/>
@@ -665,10 +665,10 @@
    <tile gid="141"/>
    <tile gid="174"/>
    <tile gid="174"/>
-   <tile gid="175"/>
-   <tile gid="40"/>
-   <tile gid="42"/>
-   <tile gid="173"/>
+   <tile gid="174"/>
+   <tile gid="174"/>
+   <tile gid="174"/>
+   <tile gid="174"/>
    <tile gid="174"/>
    <tile gid="175"/>
    <tile gid="40"/>
@@ -730,8 +730,8 @@
    <tile gid="21"/>
    <tile gid="22"/>
    <tile gid="22"/>
-   <tile gid="47"/>
-   <tile gid="46"/>
+   <tile gid="22"/>
+   <tile gid="22"/>
    <tile gid="22"/>
    <tile gid="22"/>
    <tile gid="22"/>
@@ -1550,7 +1550,7 @@
    <tile gid="40"/>
   </data>
  </layer>
- <layer id="5" name="Navigation" width="64" height="24">
+ <layer id="5" name="Navigation" width="64" height="24" visible="0">
   <properties>
    <property name="Collisions" type="bool" value="false"/>
    <property name="Draw" type="bool" value="false"/>
@@ -2147,20 +2147,6 @@
    <tile gid="249"/>
    <tile gid="249"/>
    <tile gid="249"/>
-   <tile/>
-   <tile/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
    <tile gid="249"/>
    <tile gid="249"/>
    <tile gid="249"/>
@@ -2169,6 +2155,17 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2180,21 +2177,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
-   <tile gid="249"/>
    <tile/>
    <tile/>
    <tile/>
@@ -2211,8 +2193,26 @@
    <tile gid="249"/>
    <tile gid="249"/>
    <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
+   <tile gid="249"/>
    <tile gid="249"/>
    <tile gid="249"/>
    <tile gid="249"/>
@@ -3095,7 +3095,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="2" name="Collisions" width="64" height="24" visible="0">
+ <layer id="2" name="Collisions" width="64" height="24">
   <properties>
    <property name="Collisions" type="bool" value="true"/>
    <property name="Draw" type="bool" value="false"/>
@@ -3692,20 +3692,6 @@
    <tile/>
    <tile/>
    <tile/>
-   <tile gid="248"/>
-   <tile gid="248"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile gid="248"/>
-   <tile gid="248"/>
-   <tile gid="248"/>
-   <tile gid="248"/>
-   <tile gid="248"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
    <tile/>
    <tile/>
    <tile/>
@@ -3714,6 +3700,17 @@
    <tile gid="248"/>
    <tile gid="248"/>
    <tile gid="248"/>
+   <tile gid="248"/>
+   <tile gid="248"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile gid="248"/>
    <tile gid="248"/>
    <tile gid="248"/>
@@ -3725,21 +3722,6 @@
    <tile gid="248"/>
    <tile gid="248"/>
    <tile gid="248"/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
    <tile gid="248"/>
    <tile gid="248"/>
    <tile gid="248"/>
@@ -3756,8 +3738,26 @@
    <tile/>
    <tile/>
    <tile/>
+   <tile/>
+   <tile/>
    <tile gid="248"/>
    <tile gid="248"/>
+   <tile gid="248"/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile/>
    <tile/>
