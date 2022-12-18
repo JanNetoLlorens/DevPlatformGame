@@ -52,8 +52,6 @@ bool FlyingEnemy::CleanUp()
 void FlyingEnemy::OnCollision(PhysBody* physA, PhysBody* physB) {
 
 
-
-
 }
 
 bool FlyingEnemy::LoadState(pugi::xml_node& data)

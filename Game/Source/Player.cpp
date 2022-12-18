@@ -301,6 +301,14 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			LOG("Collision WIN");
 			win = true;
 			break;
+		case ColliderType::WALKING_ENEMY:
+			LOG("Walking enemy kills you");
+			dead = true;
+			break;
+		case ColliderType::FLYING_ENEMY:
+			LOG("Flying enemy kills you");
+			dead = true;
+			break;
 		case ColliderType::UNKNOWN:
 			LOG("Collision UNKNOWN");
 			break;
