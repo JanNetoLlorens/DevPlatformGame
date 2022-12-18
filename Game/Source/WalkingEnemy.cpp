@@ -59,7 +59,7 @@ bool WalkingEnemy::Start() {
 
 	currentAnimation = &walkLeftAnim;
 
-	pbody = app->physics->CreateCircle(position.x, position.y, 18, bodyType::DYNAMIC);
+	pbody = app->physics->CreateCircle(position.x, position.y, 20, bodyType::DYNAMIC);
 	pbody->listener = this;
 	pbody->ctype = ColliderType::WALKING_ENEMY;
 
@@ -156,7 +156,7 @@ bool WalkingEnemy::Update()
 	//animation update + draw
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	currentAnimation->Update();
-	app->render->DrawTexture(texture, position.x-17.5, position.y-21, &rect);
+	app->render->DrawTexture(texture, position.x, position.y-4, &rect);
 
 	return true;
 }
