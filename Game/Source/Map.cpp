@@ -85,19 +85,6 @@ void Map::Draw()
     if(mapLoaded == false)
         return;
 
-    /*
-    // L04: DONE 6: Iterate all tilesets and draw all their 
-    // images in 0,0 (you should have only one tileset for now)
-
-    ListItem<TileSet*>* tileset;
-    tileset = mapData.tilesets.start;
-
-    while (tileset != NULL) {
-        app->render->DrawTexture(tileset->data->texture,0,0);
-        tileset = tileset->next;
-    }
-    */
-
     // L05: DONE 5: Prepare the loop to draw all tiles in a layer + DrawTexture()
 
     ListItem<MapLayer*>* mapLayerItem;
@@ -168,8 +155,16 @@ void Map::DrawColliders()
                     }
                     else if (gid != NULL)
                     {
-                        PhysBody* c3 = app->physics->CreateRectangle(pos.x+16, pos.y+16, r.w, r.h, STATIC);
-                        c3->ctype = ColliderType::PLATFORM;
+                        if (gid == 248)
+                        {
+                            PhysBody* c3 = app->physics->CreateRectangle(pos.x + 16, pos.y + 16, r.w, r.h, STATIC);
+                            c3->ctype = ColliderType::PLATFORM;
+                        }
+                        else if (gid == 249)
+                        {
+                            PhysBody* c3 = app->physics->CreateRectangle(pos.x + 16, pos.y + 16, r.w, r.h, STATIC);
+                            c3->ctype = ColliderType::WALL;
+                        }
                     }
                 }
             }

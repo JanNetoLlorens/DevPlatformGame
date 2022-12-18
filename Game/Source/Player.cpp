@@ -293,6 +293,9 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			currentAnimation = &idleAnim;
 			numJumps = 0;
 			break;
+		case ColliderType::WALL:
+			LOG("Collision PLATFORM");
+			break;
 		case ColliderType::DEATH:
 			LOG("Collision DEATH");
 			if (!app->debug->godMode)
