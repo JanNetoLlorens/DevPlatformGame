@@ -2,7 +2,7 @@
 
 ## Description
 
-Luffy lost all his crew when they disembarced in that mysterious island, now he's alone and doesen't know where to go, follow him as he travels through that mysterious jail and discover it's mysteries.
+Luffy lost all his crew when they disembarced in that mysterious island, now he's alone and doesen't know where to go, follow him as he travels through that mysterious island and discover it's mysteries.
 
 ## Features (First Level/First Delivery)
 
