@@ -93,9 +93,6 @@ bool Player::Start() {
 	texture = app->tex->Load(texturePath);
 	currentAnimation = &idleAnim;
 
-	dead = false;
-	win = false;
-
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	pbody = app->physics->CreateCircle(position.x+16, position.y+16, 18, bodyType::DYNAMIC);
 	//pbody->body->SetFixedRotation(true);
@@ -245,7 +242,48 @@ bool Player::Update()
 		pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(parameters.attribute("x").as_int()), PIXEL_TO_METERS(parameters.attribute("y").as_int())), 0);
 	}
 
-	if(dead)
+	//Player or Enemy death
+	if(mightKillWE)
+	{
+		if (posPlayerToKill.y < posWalkingEnToKill.y)
+		{
+			app->scene->walkingEn->Disable();
+			mightKillWE = false;
+		}
+		else
+		{
+			if (dead)
+			{
+				currentAnimation = &dieAnim;
+				if (dieAnim.HasFinished() == true)
+				{
+					app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 20);
+					app->entityManager->Disable();
+				}
+			}
+		}
+	}
+	if (mightKillFE)
+	{
+		if (posPlayerToKill.y < posFlyingEnToKill.y)
+		{
+			app->scene->flyingEn->Disable();
+			mightKillFE = false;
+		}
+		else
+		{
+			if (dead)
+			{
+				currentAnimation = &dieAnim;
+				if (dieAnim.HasFinished() == true)
+				{
+					app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 20);
+					app->entityManager->Disable();
+				}
+			}
+		}
+	}
+	if (waterDeath)
 	{
 		currentAnimation = &dieAnim;
 		if (dieAnim.HasFinished() == true)
@@ -253,7 +291,6 @@ bool Player::Update()
 			app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 20);
 			app->entityManager->Disable();
 		}
-
 	}
 
 	if (win)
@@ -298,8 +335,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 		case ColliderType::DEATH:
 			LOG("Collision DEATH");
-			if (!app->debug->godMode)
-				dead = true;
+			if(!app->debug->godMode)
+				waterDeath = true;
 			break;
 		case ColliderType::WIN:
 			LOG("Collision WIN");
@@ -308,12 +345,24 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		case ColliderType::WALKING_ENEMY:
 			LOG("Walking enemy kills you");
 			if (!app->debug->godMode)
+			{
 				dead = true;
+			}
+
+			mightKillWE = true;
+			posPlayerToKill = iPoint(app->scene->player->position.x, app->scene->player->position.y);
+			posWalkingEnToKill = iPoint(app->scene->walkingEn->position.x, app->scene->walkingEn->position.y);
 			break;
 		case ColliderType::FLYING_ENEMY:
 			LOG("Flying enemy kills you");
 			if (!app->debug->godMode)
+			{
 				dead = true;
+			}
+
+			mightKillFE = true;
+			posPlayerToKill = iPoint(app->scene->player->position.x, app->scene->player->position.y);
+			posFlyingEnToKill = iPoint(app->scene->flyingEn->position.x, app->scene->flyingEn->position.y);
 			break;
 		case ColliderType::UNKNOWN:
 			LOG("Collision UNKNOWN");

@@ -58,17 +58,23 @@ private:
 	Animation jumpLeftAnim;
 	Animation dieAnim;
 
-	bool dead;
-	bool win;
+	bool mightKillFE = false;
+	bool mightKillWE = false;
+	bool dead = false;
+	bool waterDeath = false;
+	bool win = false;
 	bool movingRight;
 	bool hasJumped;
+	bool enableJump;
 
 	// L07 DONE 5: Add physics to the player - declare a Physics body
 	PhysBody* pbody;
 	_moveState moveState;
 
+	iPoint posPlayerToKill, posFlyingEnToKill, posWalkingEnToKill;
+
+
 	int pickCoinFxId;
-	bool enableJump;
 	int numJumps;
 };
 

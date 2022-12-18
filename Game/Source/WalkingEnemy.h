@@ -63,7 +63,6 @@ private:
 
 	// L07 DONE 5: Add physics to the enemy - declare a Physics body
 	PhysBody* pbody;
-	PhysBody* deathCollider;
 	WalkingEnemyMoveState moveState;
 	PathType pathType;
 };

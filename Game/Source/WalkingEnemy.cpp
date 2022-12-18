@@ -161,6 +161,7 @@ bool WalkingEnemy::Update()
 
 bool WalkingEnemy::CleanUp()
 {
+
 	return true;
 }
 
