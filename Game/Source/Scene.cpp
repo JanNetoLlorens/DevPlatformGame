@@ -52,9 +52,12 @@ bool Scene::Start()
 
 	walkingEn = (WalkingEnemy*)app->entityManager->CreateEntity(EntityType::WALKING_ENEMY);
 	walkingEn->parameters = app->LoadConfigFile().child("scene").child("walkingEnemy");
+	walkingEnList.Add(walkingEn);
+
 
 	flyingEn = (FlyingEnemy*)app->entityManager->CreateEntity(EntityType::FLYING_ENEMY);
 	flyingEn->parameters = app->LoadConfigFile().child("scene").child("flyingEnemy");
+	flyingEnList.Add(flyingEn);
 
 
 	//img = app->tex->Load("Assets/Textures/test.png");
@@ -100,13 +103,16 @@ bool Scene::Start()
 	//Declare a GUI
 	uint w, h;
 	app->win->GetWindowSize(w, h);
-	button1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Button 1", { (int)w / 2 - 50,(int)h / 2 - 30,100,20 }, this);
-	button2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Button 2", { (int)w / 2 - 50,(int)h / 2,100,20 }, this);
+	//button1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Button 1", { (int)w / 2 - 50,(int)h / 2 - 30,100,20 }, this);
+	//button2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Button 2", { (int)w / 2 - 50,(int)h / 2,100,20 }, this);
+
+	resume = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { (int)w / 2 - 50,(int)h / 2 - 30,100,30 }, this);
+	resume->parameters = app->LoadConfigFile().child("scene").child("guyButtons").child("resume");
 
 
 	app->entityManager->Enable();
 	app->pathfinding->Enable();
-
+	app->guiManager->Enable();
 
 	return true;
 }
@@ -155,8 +161,6 @@ bool Scene::Update(float dt)
 		app->render->camera.y = -player->position.y * app->win->GetScale() + 384;
 	}
 
-	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
-
 	// Draw map
 	app->map->Draw();
 
@@ -174,32 +178,34 @@ bool Scene::Update(float dt)
 	app->render->DrawTexture(mouseTileTex, highlightedTileWorld.x, highlightedTileWorld.y);
 
 	//Test compute path function
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-	{
-		if (originSelected == true)
-		{
-			app->pathfinding->CreatePath(origin, mouseTile);
-			originSelected = false;
-		}
-		else
-		{
-			origin = mouseTile;
-			originSelected = true;
-			app->pathfinding->ClearLastPath();
-		}
-	}
+	//if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+	//{
+	//	if (originSelected == true)
+	//	{
+	//		app->pathfinding->CreatePath(origin, mouseTile);
+	//		originSelected = false;
+	//	}
+	//	else
+	//	{
+	//		origin = mouseTile;
+	//		originSelected = true;
+	//		app->pathfinding->ClearLastPath();
+	//	}
+	//}
 
-	// L12: Get the latest calculated path and draw
-	const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
-	for (uint i = 0; i < path->Count(); ++i)
-	{
-		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
-	}
+	//// L12: Get the latest calculated path and draw
+	//const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
+	//for (uint i = 0; i < path->Count(); ++i)
+	//{
+	//	iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+	//	app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
+	//}
 
-	// L12: Debug pathfinding
-	iPoint originScreen = app->map->MapToWorld(origin.x, origin.y);
-	app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
+	//// L12: Debug pathfinding
+	//iPoint originScreen = app->map->MapToWorld(origin.x, origin.y);
+	//app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
+
+	app->guiManager->Draw();
 
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:[%d,%d]",
 		app->map->mapData.width,
@@ -222,6 +228,12 @@ bool Scene::PostUpdate()
 
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
+
+	if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
+	{
+		app->guiManager->enableMenu();
+		app->physics->PauseGame();
+	}
 
 	return ret;
 }

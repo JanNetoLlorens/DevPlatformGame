@@ -99,18 +99,41 @@ bool GuiManager::Draw() {
 
 }
 
+void GuiManager::ClearGuiControl(GuiControl* guiControl)
+{
+	ListItem<GuiControl*>* item;
+
+	for (item = guiControlsList.start; item != NULL; item = item->next)
+	{
+		if (item->data == guiControl) guiControlsList.Del(item);
+	}
+}
+
 bool GuiManager::CleanUp()
 {
-	ListItem<GuiControl*>* control = guiControlsList.start;
+	bool ret = true;
+	ListItem<GuiControl*>* item;
+	item = guiControlsList.end;
 
-	while (control != nullptr)
+	while (item != NULL && ret == true)
 	{
-		RELEASE(control);
+		ret = item->data->CleanUp();
+		ClearGuiControl(item->data);
+		item = item->prev;
 	}
+	guiControlsList.Clear();
 
 	return true;
+}
 
-	return false;
+void GuiManager::enableMenu()
+{
+	isMenuActive = !isMenuActive;
+}
+
+void GuiManager::enableSettings()
+{
+	isSettingsActive = !isSettingsActive;
 }
 
 

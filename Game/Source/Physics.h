@@ -80,6 +80,8 @@ public:
 	// Create Sensors
 	PhysBody* CreateRectangleSensor(int x, int y, int width, int height, bodyType type);
 	PhysBody* CreateCircleSensor(int x, int y, int radious, bodyType type);
+
+	void PauseGame();
 	
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
@@ -94,6 +96,8 @@ public:
 	//Mouse
 	b2MouseJoint* mouse_joint = nullptr;
 	b2Body* mouse_body = nullptr;
+
+	bool isPaused = false;
 
 private:
 

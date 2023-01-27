@@ -56,7 +56,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	//L07 DONE 2: Add Physics module
 	AddModule(physics);
-	AddModule(guiManager);
 	AddModule(logoScreen);
 	AddModule(introScreen);
 	AddModule(scene);
@@ -64,6 +63,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(winScreen);
 	AddModule(entityManager);
 	AddModule(map);
+	AddModule(guiManager);
 	AddModule(fade);
 	AddModule(debug);
 

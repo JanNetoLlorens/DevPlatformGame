@@ -34,6 +34,8 @@ bool Physics::Start()
 {
 	LOG("Creating Physics 2D environment");
 
+	isPaused = false;
+
 	// Create a new World
 	world = new b2World(b2Vec2(GRAVITY_X, -GRAVITY_Y));
 
@@ -47,6 +49,9 @@ bool Physics::Start()
 bool Physics::PreUpdate()
 {
 	bool ret = true;
+
+	if (isPaused)
+		return ret;
 
 	// Step (update) the World
 	// WARNING: WE ARE STEPPING BY CONSTANT 1/60 SECONDS!
@@ -367,6 +372,11 @@ void Physics::BeginContact(b2Contact* contact)
 
 	if (physB && physB->listener != NULL)
 		physB->listener->OnCollision(physB, physA);
+}
+
+void Physics::PauseGame()
+{
+	isPaused = !isPaused;
 }
 
 //--------------- PhysBody

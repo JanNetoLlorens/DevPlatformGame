@@ -29,6 +29,11 @@ public:
 	// Additional methods
 	GuiControl* CreateGuiControl(GuiControlType type, int id, const char* text, SDL_Rect bounds, Module* observer, SDL_Rect sliderBounds = { 0,0,0,0 });
 
+	void ClearGuiControl(GuiControl* guiControl);
+
+	void enableMenu();
+	void enableSettings();
+
 public:
 
 	List<GuiControl*> guiControlsList;
@@ -39,6 +44,7 @@ public:
 
 	SDL_Texture* texture;
 
+	bool isMenuActive = false, isSettingsActive = false;
 };
 
 #endif // __GUIMANAGER_H__

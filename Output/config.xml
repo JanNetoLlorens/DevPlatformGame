@@ -34,6 +34,9 @@
     <item x="1424" y="128" texturepath="Assets/Textures/goldCoin.png"/>
     <flyingEnemy x="1696" y="448" texturepath="Assets/Textures/flyingEnemy.png" pathfinding_texturepath="path_square.png"/>
     <walkingEnemy x="545" y="340" texturepath="Assets/Textures/groundEnemy.png" pathfinding_texturepath="path_square.png"/>
+    <guyButtons>
+      <resume x="567" y="366" texturepath="Assets/Textures/Button.png"/>
+    </guyButtons>
   </scene>
   <winScreen>
     <img texturepath="Assets/Textures/Win.png"/>

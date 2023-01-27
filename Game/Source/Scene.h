@@ -47,6 +47,9 @@ public:
 	WalkingEnemy* walkingEn;
 	FlyingEnemy* flyingEn;
 
+	List<WalkingEnemy*> walkingEnList;
+	List<FlyingEnemy*> flyingEnList;
+
 	uint Susume_fx;
 
 private:
@@ -61,6 +64,24 @@ private:
 	//Declare GUI
 	GuiButton* button1;
 	GuiButton* button2;
+
+	//BUTTONS
+	//menu buttons
+	GuiButton* resume;
+	GuiButton* settings;
+	GuiButton* backToTitle;
+	GuiButton* Exit;
+	//settings
+	//GuiSlider* musicVolumeSlider;
+	GuiButton* musicVolume;
+	GuiButton* fxVolume;
+	//GuiSlider* fxVolumeSlider;
+	GuiButton* fullscreen;
+	//GuiCheckBox* fullscreenCheck;
+	GuiButton* vsync;
+	//GuiCheckBox* VsyncCheck;
+	bool returnToIntro;
+	bool exit;
 
 };
 

@@ -147,11 +147,13 @@ void Map::DrawColliders()
                     {
                         PhysBody* c1 = app->physics->CreateRectangle(pos.x + 16, pos.y + 16, r.w, r.h, STATIC);
                         c1->ctype = ColliderType::DEATH;
+                        mapCollidersList.Add(c1);
                     }
                     else if (gid != NULL && (mapLayerItem->data->properties.GetProperty("WinCollider") != NULL && mapLayerItem->data->properties.GetProperty("WinCollider")->value))
                     {
                         PhysBody* c2 = app->physics->CreateRectangle(pos.x + 16, pos.y + 16, r.w, r.h, STATIC);
                         c2->ctype = ColliderType::WIN;
+                        mapCollidersList.Add(c2);
                     }
                     else if (gid != NULL)
                     {
@@ -159,11 +161,13 @@ void Map::DrawColliders()
                         {
                             PhysBody* c3 = app->physics->CreateRectangle(pos.x + 16, pos.y + 16, r.w, r.h, STATIC);
                             c3->ctype = ColliderType::PLATFORM;
+                                mapCollidersList.Add(c3);
                         }
                         else if (gid == 249)
                         {
-                            PhysBody* c3 = app->physics->CreateRectangle(pos.x + 16, pos.y + 16, r.w, r.h, STATIC);
-                            c3->ctype = ColliderType::WALL;
+                            PhysBody* c4 = app->physics->CreateRectangle(pos.x + 16, pos.y + 16, r.w, r.h, STATIC);
+                            c4->ctype = ColliderType::WALL;
+                            mapCollidersList.Add(c4);
                         }
                     }
                 }
@@ -259,6 +263,18 @@ bool Map::CleanUp()
         RELEASE(layerItem->data);
         layerItem = layerItem->next;
     }
+    mapData.maplayers.Clear();
+
+    ListItem<PhysBody*>* collisions;
+    collisions = mapCollidersList.start;
+
+    while (collisions != NULL)
+    {
+        collisions->data->body->GetWorld()->DestroyBody(collisions->data->body);
+        RELEASE(collisions->data);
+        collisions = collisions->next;
+    }
+    mapCollidersList.Clear();
 
     return true;
 }
