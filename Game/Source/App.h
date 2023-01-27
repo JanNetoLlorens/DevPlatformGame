@@ -27,6 +27,7 @@ class ModuleFadeToBlack;
 class Physics;
 class PathFinding;
 class Debug;
+class GuiManager;
 
 
 
@@ -108,6 +109,7 @@ public:
 	Physics* physics;
 	PathFinding* pathfinding;
 	Debug* debug;
+	GuiManager* guiManager;
 
 private:
 

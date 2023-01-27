@@ -6,6 +6,7 @@
 #include "WalkingEnemy.h"
 #include "FlyingEnemy.h"
 #include "Item.h"
+#include "GuiButton.h"
 
 struct SDL_Texture;
 
@@ -36,6 +37,9 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	// Define multiple Gui Event methods
+	bool OnGuiMouseClickEvent(GuiControl* control);
+
 public:
 
 	//L02: DONE 3: Declare a Player attribute 
@@ -53,6 +57,10 @@ private:
 	// L12: Debug pathfinding
 	iPoint origin;
 	bool originSelected = false;
+
+	//Declare GUI
+	GuiButton* button1;
+	GuiButton* button2;
 
 };
 

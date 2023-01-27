@@ -9,6 +9,7 @@
 #include "Map.h"
 #include "ModuleFadeToBlack.h"
 #include "Pathfinding.h"
+#include "GuiManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -96,9 +97,16 @@ bool Scene::Start()
 	// Texture to show path origin 
 	originTex = app->tex->Load("Assets/Textures/x_square.png");
 	
+	//Declare a GUI
+	uint w, h;
+	app->win->GetWindowSize(w, h);
+	button1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Button 1", { (int)w / 2 - 50,(int)h / 2 - 30,100,20 }, this);
+	button2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Button 2", { (int)w / 2 - 50,(int)h / 2,100,20 }, this);
+
 
 	app->entityManager->Enable();
 	app->pathfinding->Enable();
+
 
 	return true;
 }
@@ -216,6 +224,13 @@ bool Scene::PostUpdate()
 		ret = false;
 
 	return ret;
+}
+
+bool Scene::OnGuiMouseClickEvent(GuiControl* control)
+{
+	// L15: TODO 5: Implement the OnGuiMouseClickEvent method
+
+	return true;
 }
 
 // Called before quitting
