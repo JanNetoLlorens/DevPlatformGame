@@ -49,7 +49,7 @@ public:
 		texture = NULL;
 	}
 
-	virtual bool Start(float dt)
+	virtual bool Start()
 	{
 		return true;
 	}
@@ -95,7 +95,10 @@ public:
 	SDL_Rect bounds;        // Position and size
 	SDL_Color color;        // Tint color
 
-	SDL_Texture* texture;   // Texture atlas reference
+	SDL_Texture* texture; 
+	SDL_Texture* texture2;
+	SDL_Texture* texture3;// Texture atlas reference
+
 	SDL_Rect section;       // Texture atlas base section
 
 	pugi::xml_node parameters;
@@ -103,6 +106,8 @@ public:
 	//Font font;              // Text font
 
 	Module* observer;        // Observer module (it should probably be an array/list)
+
+	bool showMenu = false;
 };
 
 #endif // __GUICONTROL_H__

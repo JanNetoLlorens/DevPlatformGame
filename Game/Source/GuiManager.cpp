@@ -14,7 +14,19 @@ GuiManager::~GuiManager() {}
 
 bool GuiManager::Start()
 {
+	isMenuActive = false;
+	isSettingsActive = false;
+
+	ListItem<GuiControl*>* control = guiControlsList.start;
+
+	while (control != nullptr)
+	{
+		control->data->Start();
+		control = control->next;
+	}
+
 	return true;
+
 }
 
 GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char* text, SDL_Rect bounds, Module* observer, SDL_Rect sliderBounds)
@@ -74,7 +86,8 @@ bool GuiManager::Update(float dt)
 
 		while (control != nullptr)
 		{
-			control->data->Update(dt);
+			if (control->data->showMenu)
+				control->data->Update(dt);
 			control = control->next;
 		}
 
@@ -91,7 +104,8 @@ bool GuiManager::Draw() {
 
 	while (control != nullptr)
 	{
-		control->data->Draw(app->render);
+		if(control->data->showMenu)
+			control->data->Draw(app->render);
 		control = control->next;
 	}
 

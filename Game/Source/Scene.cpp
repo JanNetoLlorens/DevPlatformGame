@@ -10,6 +10,7 @@
 #include "ModuleFadeToBlack.h"
 #include "Pathfinding.h"
 #include "GuiManager.h"
+#include "IntroScreen.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -100,14 +101,18 @@ bool Scene::Start()
 	// Texture to show path origin 
 	originTex = app->tex->Load("Assets/Textures/x_square.png");
 	
+	app->guiManager->isMenuActive = false;
+	app->guiManager->isSettingsActive = false;
+
 	//Declare a GUI
 	uint w, h;
 	app->win->GetWindowSize(w, h);
-	//button1 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "Button 1", { (int)w / 2 - 50,(int)h / 2 - 30,100,20 }, this);
-	//button2 = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "Button 2", { (int)w / 2 - 50,(int)h / 2,100,20 }, this);
 
-	resume = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { (int)w / 2 - 50,(int)h / 2 - 30,100,30 }, this);
-	resume->parameters = app->LoadConfigFile().child("scene").child("guyButtons").child("resume");
+	//menu
+	resume = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { (int)w / 2 - 50,(int)h / 2 - 90,90,35 }, this);
+	settings = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "SETTINGS", { (int)w / 2 - 50,(int)h / 2 -45,90,35 }, this);
+	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "BACK to TITLE", { (int)w / 2 - 50,(int)h / 2,90,35 }, this);
+	exit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "EXIT", { (int)w / 2 - 50,(int)h / 2 + 45,90,35 }, this);
 
 
 	app->entityManager->Enable();
@@ -161,6 +166,35 @@ bool Scene::Update(float dt)
 		app->render->camera.y = -player->position.y * app->win->GetScale() + 384;
 	}
 
+	//menu enable
+	if (app->guiManager->isMenuActive)
+	{
+		ListItem<GuiControl*>* buttonToActivate = app->guiManager->guiControlsList.start;
+		while (buttonToActivate != NULL)
+		{
+			for (uint i = 1; i <= 4; ++i)
+			{
+				if (buttonToActivate->data->id == i)
+					buttonToActivate->data->showMenu = true;
+			}
+			buttonToActivate = buttonToActivate->next;
+		}
+	}
+
+	if (!app->guiManager->isMenuActive)
+	{
+		ListItem<GuiControl*>* buttonToActivate = app->guiManager->guiControlsList.start;
+		while (buttonToActivate != NULL)
+		{
+			for (uint i = 1; i <= 4; ++i)
+			{
+				if (buttonToActivate->data->id == i)
+					buttonToActivate->data->showMenu = false;
+			}
+			buttonToActivate = buttonToActivate->next;
+		}
+	}
+
 	// Draw map
 	app->map->Draw();
 
@@ -174,36 +208,6 @@ bool Scene::Update(float dt)
 	mouseTile = app->map->WorldToMap((mouseX - app->render->camera.x), (mouseY - app->render->camera.y));
 	
 
-	iPoint highlightedTileWorld = app->map->MapToWorld(mouseTile.x, mouseTile.y);
-	app->render->DrawTexture(mouseTileTex, highlightedTileWorld.x, highlightedTileWorld.y);
-
-	//Test compute path function
-	//if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-	//{
-	//	if (originSelected == true)
-	//	{
-	//		app->pathfinding->CreatePath(origin, mouseTile);
-	//		originSelected = false;
-	//	}
-	//	else
-	//	{
-	//		origin = mouseTile;
-	//		originSelected = true;
-	//		app->pathfinding->ClearLastPath();
-	//	}
-	//}
-
-	//// L12: Get the latest calculated path and draw
-	//const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
-	//for (uint i = 0; i < path->Count(); ++i)
-	//{
-	//	iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-	//	app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
-	//}
-
-	//// L12: Debug pathfinding
-	//iPoint originScreen = app->map->MapToWorld(origin.x, origin.y);
-	//app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
 
 	app->guiManager->Draw();
 
@@ -226,10 +230,26 @@ bool Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
+	if (goMainMenu)
+	{
+		goMainMenu = false;
+		app->fade->FadeToBlack(this, app->introScreen, 15);
+		app->entityManager->Disable();
+		app->pathfinding->Disable();
+		app->guiManager->Disable();
+		app->map->Disable();
+		app->physics->PauseGame();
+	}
 
-	if (app->input->GetKey(SDL_SCANCODE_Q) == KEY_DOWN)
+	if (exitGame)
+	{
+		ret = false;
+		app->guiManager->isMenuActive = false;
+		app->physics->PauseGame();
+	}
+		
+
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
 		app->guiManager->enableMenu();
 		app->physics->PauseGame();
@@ -241,7 +261,29 @@ bool Scene::PostUpdate()
 bool Scene::OnGuiMouseClickEvent(GuiControl* control)
 {
 	// L15: TODO 5: Implement the OnGuiMouseClickEvent method
+	LOG("Event by %d ", control->id);
 
+	switch (control->id)
+	{
+	case 1:
+		app->guiManager->enableMenu();
+		app->physics->PauseGame();
+		LOG("Button 1 clicked");
+		break;
+	case 2:
+		app->guiManager->enableMenu();
+		app->guiManager->enableSettings();
+		LOG("Button 2 clicked");
+		break;
+	case 3:
+		goMainMenu = true;
+		LOG("Button 3 clicked");
+		break;
+	case 4:
+		exitGame = true;
+		LOG("Button 4 clicked");
+		break;
+	}
 	return true;
 }
 

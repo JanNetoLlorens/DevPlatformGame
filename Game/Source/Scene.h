@@ -70,7 +70,7 @@ private:
 	GuiButton* resume;
 	GuiButton* settings;
 	GuiButton* backToTitle;
-	GuiButton* Exit;
+	GuiButton* exit;
 	//settings
 	//GuiSlider* musicVolumeSlider;
 	GuiButton* musicVolume;
@@ -80,8 +80,8 @@ private:
 	//GuiCheckBox* fullscreenCheck;
 	GuiButton* vsync;
 	//GuiCheckBox* VsyncCheck;
-	bool returnToIntro;
-	bool exit;
+	bool goMainMenu;
+	bool exitGame;
 
 };
 

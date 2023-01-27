@@ -41,6 +41,9 @@ bool IntroScreen::Start()
 	app->win->scale = 1;
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 	
+	app->render->camera.x = 0;
+	app->render->camera.y = 0;
+
 
 	//launch_fx = app->audio->LoadFx("Wahssets/Audio/Waluigi_Time.wav");
 

@@ -23,6 +23,10 @@ bool GuiButton::Start()
 {
 	texturePath = "Assets/Textures/Button.png";
 	texture = app->tex->Load(texturePath);
+	texturePath = "Assets/Textures/Button_Hover.png";
+	texture2 = app->tex->Load(texturePath);
+	texturePath = "Assets/Textures/Button_Clicked.png";
+	texture3 = app->tex->Load(texturePath);
 
 	return true;
 }
@@ -73,24 +77,28 @@ bool GuiButton::Draw(Render* render)
 	case GuiControlState::DISABLED:
 		break;
 	case GuiControlState::NORMAL:
-		section = { 124,10,90,35 };
+		section = { 0,0,90,35 };
+		render->DrawTexture(texture, bounds.x, bounds.y, &section, 0);
 		break;
 	case GuiControlState::FOCUSED:
-		section = { 12,10,90,35 };
+		section = { 0,0,92,37 };
+		render->DrawTexture(texture2, bounds.x-1, bounds.y-1, &section, 0);
 		break;
 	case GuiControlState::PRESSED:
-		section = { 12,74,90,35 };
+		section = { 0,0,92,37 };
+		render->DrawTexture(texture3, bounds.x-1, bounds.y-1, &section, 0);
 		break;
 	}
 
-	render->DrawTexture(texture, bounds.x, bounds.y, &section, 0);
 	app->render->DrawText(text.GetString(), bounds.x, bounds.y, bounds.w, bounds.h, { 255,255,255 });
 
-	return false;
+	return true;
 }
 
 bool GuiButton::CleanUp()
 {
 	app->tex->UnLoad(texture);
+	app->tex->UnLoad(texture2);
+	app->tex->UnLoad(texture3);
 	return true;
 }
