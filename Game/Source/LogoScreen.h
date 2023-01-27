@@ -16,7 +16,9 @@ public:
 	// Destructor
 	virtual ~LogoScreen();
 
-	// Called before render is available
+	//
+
+	// Called before render is available pepn dawd
 	bool Awake(pugi::xml_node& config);
 
 	// Called before the first frame
