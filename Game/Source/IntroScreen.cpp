@@ -27,6 +27,7 @@ bool IntroScreen::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
 	bool ret = true;
+	app->audio->PlayMusic("One Piece Game Dev Assets/Music/Overtaken.wav");
 
 	return ret;
 }
@@ -39,6 +40,7 @@ bool IntroScreen::Start()
 
 	app->win->scale = 1;
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
+	
 
 	//launch_fx = app->audio->LoadFx("Wahssets/Audio/Waluigi_Time.wav");
 

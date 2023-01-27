@@ -57,9 +57,12 @@ bool Scene::Start()
 
 
 	//img = app->tex->Load("Assets/Textures/test.png");
-	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 
-	Susume_fx = app->audio->LoadFx("One Piece Game Dev Assets/Music/Overtaken.wav");
+	app->audio->PlayMusic("One Piece Game Dev Assets/Music/Bazooka.wav");
+
+
+
+	//Susume_fx = app->audio->LoadFx("One Piece Game Dev Assets/Music/Overtaken.wav");
 	
 	// L03: DONE: Load map
 	bool retLoad = app->map->Load();
