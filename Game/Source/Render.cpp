@@ -6,6 +6,9 @@
 #include "Defs.h"
 #include "Log.h"
 
+#include "SDL/include/SDL.h"
+#include "SDL_ttf/include/SDL_ttf.h"
+
 #define VSYNC true
 
 Render::Render(bool startEnabled) : Module(startEnabled)
@@ -50,6 +53,12 @@ bool Render::Awake(pugi::xml_node& config)
 		camera.y = 0;
 	}
 
+	//initialise the SDL_ttf library
+	TTF_Init();
+
+	//load a font into memory
+	font = TTF_OpenFont("Assets/Fonts/arial/arial.ttf", 25);
+
 	return ret;
 }
 
@@ -84,6 +93,12 @@ bool Render::PostUpdate()
 // Called before quitting
 bool Render::CleanUp()
 {
+	// Free the font
+	TTF_CloseFont(font);
+
+	//we clean up TTF library
+	TTF_Quit();
+
 	LOG("Destroying SDL render");
 	SDL_DestroyRenderer(renderer);
 	return true;

@@ -239,6 +239,7 @@ bool Scene::PostUpdate()
 		app->guiManager->Disable();
 		app->map->Disable();
 		app->physics->PauseGame();
+		app->SaveGameRequest();
 	}
 
 	if (exitGame)

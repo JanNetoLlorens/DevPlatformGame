@@ -34,14 +34,24 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-public:
+	// Define multiple Gui Event methods
+	bool OnGuiMouseClickEvent(GuiControl* control);
 
+public:
+	GuiButton* playButton;
+	GuiButton* continueGame;
+	GuiButton* settings;
+	GuiButton* credits;
+	GuiButton* exit;
 
 private:
 	SDL_Texture* img;
 	SDL_Texture* berry;
 
-	bool printedRight;
+	bool playNow = false;
+	bool continuePlaying = false;
+	bool exitGame = false;
+	bool creditsActive = false;
 
 };
 

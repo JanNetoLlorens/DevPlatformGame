@@ -10,15 +10,12 @@
 	<scene />
 	<introScreen />
 	<WinScreen />
-	<entitymanager>
-		<player x="948" y="624" />
-		<walkingEnemy x="535" y="316" />
-		<flyingEnemy x="1328" y="624" />
-	</entitymanager>
+	<entitymanager />
 	<map />
+	<guiManager />
 	<:anonymous />
 	<:anonymous />
 	<renderer>
-		<camera x="-436" y="-240" />
+		<camera x="0" y="-221" />
 	</renderer>
 </save_state>

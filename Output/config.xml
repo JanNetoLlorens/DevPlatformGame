@@ -26,7 +26,7 @@
     <img texturepath="Assets/Textures/Logo.png"/>
   </logoScreen>
   <introScreen>
-    <img texturepath="Assets/Textures/Menu.png"/>
+    <img texturepath="Assets/Textures/newMenu.png"/>
     <berry texturepath="Assets/Textures/Berry.png"/>
   </introScreen>
   <scene>
