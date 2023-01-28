@@ -28,6 +28,7 @@ enum class ColliderType {
 	WALKING_ENEMY,
 	FLYING_ENEMY,
 	ITEM,
+	HEART,
 	PLATFORM, 
 	WALL,
 	DEATH,

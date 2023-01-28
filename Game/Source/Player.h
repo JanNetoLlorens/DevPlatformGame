@@ -66,6 +66,7 @@ private:
 	bool movingRight;
 	bool hasJumped;
 	bool enableJump;
+	bool invincible;
 
 	// L07 DONE 5: Add physics to the player - declare a Physics body
 	PhysBody* pbody;
@@ -76,6 +77,7 @@ private:
 
 	int pickCoinFxId;
 	int numJumps;
+	int invincibility;
 };
 
 #endif // __PLAYER_H__

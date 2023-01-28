@@ -48,6 +48,12 @@ bool Scene::Start()
 		item->parameters = itemNode;
 		items.Add(item);
 	}
+	for (pugi::xml_node itemNode = app->LoadConfigFile().child("scene").child("heart"); itemNode; itemNode = itemNode.next_sibling("heart"))
+	{
+		Item* item = (Item*)app->entityManager->CreateEntity(EntityType::HEART);
+		item->parameters = itemNode;
+		items.Add(item);
+	}
 
 	//L02: DONE 3: Instantiate the player using the entity manager
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);

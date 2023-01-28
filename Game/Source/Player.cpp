@@ -94,6 +94,9 @@ bool Player::Start() {
 	texture = app->tex->Load(texturePath);
 	currentAnimation = &idleAnim;
 
+	invincibility = 0;
+	invincible = false;
+
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	pbody = app->physics->CreateCircle(position.x+16, position.y+16, 18, bodyType::DYNAMIC);
 	//pbody->body->SetFixedRotation(true);
@@ -246,6 +249,14 @@ bool Player::Update()
 	if (app->hud->timeCount_ > 100)
 		dead = true;
 
+	if (invincible)
+		invincibility++;
+
+	LOG("INVINCIBILITY: %d", invincibility);
+
+	if (invincibility == 100 || invincibility > 100)
+		invincible = false;
+
 	//Player or Enemy death
 	if(mightKillWE)
 	{
@@ -254,17 +265,13 @@ bool Player::Update()
 			app->scene->walkingEn->Disable();
 			mightKillWE = false;
 		}
-		else
+		else if (!invincible)
 		{
-			if (dead)
-			{
-				currentAnimation = &dieAnim;
-				if (dieAnim.HasFinished() == true)
-				{
-					app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 20);
-					app->entityManager->Disable();
-				}
-			}
+			mightKillWE = false;
+			app->hud->heartsCount--;
+			invincible = true;
+			if (app->hud->heartsCount == 0)
+				dead = true;
 		}
 	}
 	if (mightKillFE)
@@ -274,17 +281,13 @@ bool Player::Update()
 			app->scene->flyingEn->Disable();
 			mightKillFE = false;
 		}
-		else
+		else if(!invincible)
 		{
-			if (dead)
-			{
-				currentAnimation = &dieAnim;
-				if (dieAnim.HasFinished() == true)
-				{
-					app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 20);
-					app->entityManager->Disable();
-				}
-			}
+			mightKillFE = false;
+			app->hud->heartsCount--;
+			invincible = true;
+			if (app->hud->heartsCount == 0)
+				dead = true;
 		}
 	}
 
@@ -339,6 +342,11 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			app->audio->PlayFx(pickCoinFxId);
 			app->hud->coinsCount++;
 			break;
+		case ColliderType::HEART:
+			LOG("Collision ITEM");
+			//app->audio->PlayFx(pickCoinFxId);
+			app->hud->heartsCount++;
+			break;
 		case ColliderType::PLATFORM:
 			LOG("Collision PLATFORM");
 			enableJump = true;
@@ -360,22 +368,12 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 		case ColliderType::WALKING_ENEMY:
 			LOG("Walking enemy kills you");
-			if (!app->debug->godMode)
-			{
-				dead = true;
-			}
-
 			mightKillWE = true;
 			posPlayerToKill = iPoint(app->scene->player->position.x, app->scene->player->position.y);
 			posWalkingEnToKill = iPoint(app->scene->walkingEn->position.x, app->scene->walkingEn->position.y);
 			break;
 		case ColliderType::FLYING_ENEMY:
 			LOG("Flying enemy kills you");
-			if (!app->debug->godMode)
-			{
-				dead = true;
-			}
-
 			mightKillFE = true;
 			posPlayerToKill = iPoint(app->scene->player->position.x, app->scene->player->position.y);
 			posFlyingEnToKill = iPoint(app->scene->flyingEn->position.x, app->scene->flyingEn->position.y);

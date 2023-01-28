@@ -44,7 +44,7 @@ bool Hud::Start()
 
 	timeCount.Start();
 	timeCount_ = 0.0f;
-	heartsCount = 0;
+	heartsCount = 2;
 	coinsCount = 0;
 
 	return true;
