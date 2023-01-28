@@ -79,6 +79,21 @@
     <ClCompile Include="Source\GuiButton.cpp">
       <Filter>Source\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GuiCheckbox.cpp">
+      <Filter>Source\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiSlider.cpp">
+      <Filter>Source\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Hud.cpp">
+      <Filter>Source\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Timer.cpp">
+      <Filter>Source\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Heart.cpp">
+      <Filter>Source\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Defs.h">
@@ -191,6 +206,21 @@
     </ClInclude>
     <ClInclude Include="Source\GuiControl.h">
       <Filter>Source\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiCheckbox.h">
+      <Filter>Source\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiSlider.h">
+      <Filter>Source\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Hud.h">
+      <Filter>Source\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Timer.h">
+      <Filter>Source\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Heart.h">
+      <Filter>Source\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

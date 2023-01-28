@@ -1,4 +1,4 @@
-#include "Item.h"
+#include "Heart.h"
 #include "App.h"
 #include "Textures.h"
 #include "Audio.h"
@@ -9,15 +9,15 @@
 #include "Point.h"
 #include "Physics.h"
 
-Item::Item() : Entity(EntityType::ITEM)
+Heart::Heart() : Entity(EntityType::ITEM)
 {
-	name.Create("item");
+	name.Create("heart");
 }
 
-Item::~Item() {}
+Heart::~Heart() {}
 
 
-bool Item::Awake() {
+bool Heart::Awake() {
 
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
@@ -26,23 +26,23 @@ bool Item::Awake() {
 	return true;
 }
 
-bool Item::Start() {
+bool Heart::Start() {
 
 	//initilize textures
 	texture = app->tex->Load(texturePath);
-	
+
 	// L07 DONE 4: Add a physics to an item - initialize the physics body
 	pbody = app->physics->CreateCircleSensor(position.x + 16, position.y + 16, 16, bodyType::STATIC);
 
 	// L07 DONE 7: Assign collider type
-	pbody->ctype = ColliderType::ITEM;
+	pbody->ctype = ColliderType::HEART;
 
 	isPicked = false;
 
 	return true;
 }
 
-bool Item::Update()
+bool Heart::Update()
 {
 	if (isPicked)
 	{
@@ -58,14 +58,14 @@ bool Item::Update()
 	return true;
 }
 
-bool Item::CleanUp()
+bool Heart::CleanUp()
 {
 	app->tex->UnLoad(texture);
 	texturePath = nullptr;
 	return true;
 }
 
-void Item::OnCollision(PhysBody* physA, PhysBody* physB) 
+void Heart::OnCollision(PhysBody* physA, PhysBody* physB)
 {
 
 	switch (physB->ctype)

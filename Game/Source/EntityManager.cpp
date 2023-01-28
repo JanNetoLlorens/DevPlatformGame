@@ -1,6 +1,7 @@
 #include "EntityManager.h"
 #include "Player.h"
 #include "Item.h"
+#include "Heart.h"
 #include "WalkingEnemy.h"
 #include "FlyingEnemy.h"
 #include "App.h"
@@ -93,6 +94,10 @@ Entity* EntityManager::CreateEntity(EntityType type)
 
 	case EntityType::ITEM:
 		entity = new Item();
+		break;
+
+	case EntityType::HEART:
+		entity = new Heart();
 		break;
 
 	case EntityType::WALKING_ENEMY:

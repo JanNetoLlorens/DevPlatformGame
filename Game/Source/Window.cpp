@@ -100,3 +100,8 @@ uint Window::GetScale() const
 {
 	return scale;
 }
+
+void Window::enableFullscreen()
+{
+	fullscreenOn = !fullscreenOn;
+}

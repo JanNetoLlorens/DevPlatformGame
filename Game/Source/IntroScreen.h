@@ -4,6 +4,8 @@
 #include "Module.h"
 #include "Player.h"
 #include "Item.h"
+#include "GUICheckBox.h"
+#include "GuiSlider.h"
 
 struct SDL_Texture;
 
@@ -43,6 +45,13 @@ public:
 	GuiButton* settings;
 	GuiButton* credits;
 	GuiButton* exit;
+
+	GuiCheckbox* fullscreenCB;
+	GuiCheckbox* vsyncCB;
+	GuiButton* goBack;
+	GuiSlider* musicSLider;
+	GuiSlider* SFXslider;
+
 
 private:
 	SDL_Texture* img;
