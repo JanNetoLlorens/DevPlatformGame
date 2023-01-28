@@ -12,6 +12,7 @@
 #include "EntityManager.h"
 #include "Map.h"
 #include "Debug.h"
+#include "Hud.h"
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -242,6 +243,9 @@ bool Player::Update()
 		pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(parameters.attribute("x").as_int()), PIXEL_TO_METERS(parameters.attribute("y").as_int())), 0);
 	}
 
+	if (app->hud->timeCount_ > 100)
+		dead = true;
+
 	//Player or Enemy death
 	if(mightKillWE)
 	{
@@ -283,12 +287,23 @@ bool Player::Update()
 			}
 		}
 	}
+
+	if (dead)
+	{
+		currentAnimation = &dieAnim;
+		if (dieAnim.HasFinished() == true)
+		{
+			app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 15);
+			app->entityManager->Disable();
+		}
+	}
+
 	if (waterDeath)
 	{
 		currentAnimation = &dieAnim;
 		if (dieAnim.HasFinished() == true)
 		{
-			app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 20);
+			app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 15);
 			app->entityManager->Disable();
 		}
 	}
@@ -322,6 +337,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		case ColliderType::ITEM:
 			LOG("Collision ITEM");
 			app->audio->PlayFx(pickCoinFxId);
+			app->hud->coinsCount++;
 			break;
 		case ColliderType::PLATFORM:
 			LOG("Collision PLATFORM");

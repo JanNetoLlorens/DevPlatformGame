@@ -5,6 +5,7 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Scene.h"
+#include "Hud.h"
 #include "LoseScreen.h"
 #include "WinScreen.h"
 #include "EntityManager.h"
@@ -41,6 +42,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	logoScreen = new LogoScreen(true);
 	introScreen = new IntroScreen(false);
 	scene = new Scene(false);
+	hud = new Hud(false);
 	lose = new LoseScreen(false);
 	winScreen = new WinScreen(false);
 	entityManager = new EntityManager(false);
@@ -59,6 +61,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(logoScreen);
 	AddModule(introScreen);
 	AddModule(scene);
+	AddModule(hud);
 	AddModule(lose);
 	AddModule(winScreen);
 	AddModule(entityManager);

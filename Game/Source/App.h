@@ -18,6 +18,7 @@ class Audio;
 class LogoScreen;
 class IntroScreen;
 class Scene;
+class Hud;
 class LoseScreen;
 class WinScreen;
 class EntityManager;
@@ -100,6 +101,7 @@ public:
 	LogoScreen* logoScreen;
 	IntroScreen* introScreen;
 	Scene* scene;
+	Hud* hud;
 	LoseScreen* lose;
 	WinScreen* winScreen;
 	EntityManager* entityManager;

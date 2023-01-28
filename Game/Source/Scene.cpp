@@ -11,6 +11,7 @@
 #include "Pathfinding.h"
 #include "GuiManager.h"
 #include "IntroScreen.h"
+#include "Hud.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -45,6 +46,7 @@ bool Scene::Start()
 	{
 		Item* item = (Item*)app->entityManager->CreateEntity(EntityType::ITEM);
 		item->parameters = itemNode;
+		items.Add(item);
 	}
 
 	//L02: DONE 3: Instantiate the player using the entity manager
@@ -118,6 +120,7 @@ bool Scene::Start()
 	app->entityManager->Enable();
 	app->pathfinding->Enable();
 	app->guiManager->Enable();
+	app->hud->Enable();
 
 	return true;
 }
@@ -293,8 +296,21 @@ bool Scene::CleanUp()
 {
 	LOG("Freeing scene");
 
+	ListItem<Entity*>* item;
+	item = items.start;
+
+	while (item != NULL)
+	{
+		app->entityManager->DestroyEntity(item->data);
+		RELEASE(item->data);
+		item = item->next;
+	}
+	items.Clear();
+
 	app->entityManager->Disable();
 	app->pathfinding->Disable();
+	app->hud->Disable();
+	app->guiManager->Disable();
 
 	return true;
 }

@@ -31,13 +31,22 @@
   </introScreen>
   <scene>
     <player x="150" y="590" texturepath="Assets/Textures/Ruffy_SpriteSheet.png"/>
+    <item x="180" y="590" texturepath="Assets/Textures/goldCoin.png"/>
+    <item x="180" y="300" texturepath="Assets/Textures/goldCoin.png"/>
     <item x="1424" y="128" texturepath="Assets/Textures/goldCoin.png"/>
+    <item x="1424" y="128" texturepath="Assets/Textures/goldCoin.png"/>
+    <item x="1424" y="128" texturepath="Assets/Textures/goldCoin.png"/>
+    <heart x="150" y="400" texturepath="Assets/Textures/Heart.png"/>
     <flyingEnemy x="1696" y="448" texturepath="Assets/Textures/flyingEnemy.png" pathfinding_texturepath="path_square.png"/>
     <walkingEnemy x="545" y="340" texturepath="Assets/Textures/groundEnemy.png" pathfinding_texturepath="path_square.png"/>
     <guyButtons>
       <resume x="567" y="366" texturepath="Assets/Textures/Button.png"/>
     </guyButtons>
   </scene>
+  <hud>
+    <coin texturepath="Assets/Textures/goldCoin.png"/>
+    <heart texturepath="Assets/Textures/Heart.png"/>
+  </hud>
   <winScreen>
     <img texturepath="Assets/Textures/Win.png"/>
   </winScreen>

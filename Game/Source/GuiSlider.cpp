@@ -68,10 +68,10 @@ bool GuiSlider::Update(float dt)
 				}
 			}
 
-			if (this->id == 5) {
+			if (this->id == 9) {
 				Mix_VolumeMusic(bounds.x - sliderBound.x);
 			}
-			if (this->id == 6) {
+			if (this->id == 10) {
 				Mix_Volume(-1, bounds.x - sliderBound.x);
 			}
 

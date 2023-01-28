@@ -49,6 +49,7 @@ public:
 
 	List<WalkingEnemy*> walkingEnList;
 	List<FlyingEnemy*> flyingEnList;
+	List<Entity*> items;
 
 	uint Susume_fx;
 
