@@ -55,20 +55,16 @@ bool IntroScreen::Start()
 	credits = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 550,480+135,90,35 }, this);
 	exit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 550,480+180,90,35 }, this);
 
+	fullscreenCB = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 6, "FULLSCREEN", { 550,480 + 90,135,35 }, this);
+	vsyncCB = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 7, "VSYNC", { 550,480 + 135,135,35 }, this);
+	goBack = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 8, "BACK", { 550,480 + 180,90,35 }, this);
+
+	//settings
+
+
 	app->guiManager->Enable();
 
 	//enable gui main menu
-	ListItem<GuiControl*>* control = app->guiManager->guiControlsList.start;
-
-	while (control != nullptr)
-	{
-		for (int i = 1; i <= 5; ++i) {
-			if (control->data->id == i) {
-				control->data->showMenu = true;
-			}
-		}
-		control = control->next;
-	}
 
 	playNow = false;
 	continuePlaying = false;
@@ -122,7 +118,63 @@ bool IntroScreen::Update(float dt)
 		return false;
 	}
 
+	if (app->win->fullscreenOn)
+		SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
+	else if(!app->win->fullscreenOn)
+		SDL_SetWindowFullscreen(app->win->window, 0);
 
+	if (!app->guiManager->isSettingsActive)
+	{
+		ListItem<GuiControl*>* controlMenu = app->guiManager->guiControlsList.start;
+
+		while (controlMenu != nullptr)
+		{
+			for (int i = 1; i <= 5; ++i) {
+				if (controlMenu->data->id == i) {
+					controlMenu->data->showMenu = true;
+				}
+			}
+			controlMenu = controlMenu->next;
+		}
+
+		ListItem<GuiControl*>* control = app->guiManager->guiControlsList.start;
+
+		while (control != nullptr)
+		{
+			for (int i = 6; i <= 8; ++i) {
+				if (control->data->id == i) {
+					control->data->showMenu = false;
+				}
+			}
+			control = control->next;
+		}
+	}
+	if (app->guiManager->isSettingsActive)
+	{
+		ListItem<GuiControl*>* controlMenu = app->guiManager->guiControlsList.start;
+
+		while (controlMenu != nullptr)
+		{
+			for (int i = 1; i <= 5; ++i) {
+				if (controlMenu->data->id == i) {
+					controlMenu->data->showMenu = false;
+				}
+			}
+			controlMenu = controlMenu->next;
+		}
+
+		ListItem<GuiControl*>* control = app->guiManager->guiControlsList.start;
+
+		while (control != nullptr)
+		{
+			for (int i = 6; i <= 8; ++i) {
+				if (control->data->id == i) {
+					control->data->showMenu = true;
+				}
+			}
+			control = control->next;
+		}
+	}
 
 	return true;
 }
@@ -176,6 +228,17 @@ bool IntroScreen::OnGuiMouseClickEvent(GuiControl* control)
 	case 5:
 		exitGame = true;
 		LOG("Button 5 clicked");
+		break;
+	case 6:
+		app->win->enableFullscreen();
+		LOG("Button 6 clicked");
+		break;
+	case 7:
+		LOG("Button 7 clicked");
+		break;
+	case 8:
+		app->guiManager->enableSettings();
+		LOG("Button 8 clicked");
 		break;
 	}
 	return true;
