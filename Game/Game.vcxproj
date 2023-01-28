@@ -100,6 +100,7 @@
     <ClCompile Include="Source\GuiButton.cpp" />
     <ClCompile Include="Source\GuiCheckbox.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
+    <ClCompile Include="Source\GuiSlider.cpp" />
     <ClCompile Include="Source\LoseScreen.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\IntroScreen.cpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="Source\GuiCheckbox.h" />
     <ClInclude Include="Source\GuiControl.h" />
     <ClInclude Include="Source\GuiManager.h" />
+    <ClInclude Include="Source\GuiSlider.h" />
     <ClInclude Include="Source\LoseScreen.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />

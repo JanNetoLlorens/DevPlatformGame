@@ -58,6 +58,8 @@ bool IntroScreen::Start()
 	fullscreenCB = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 6, "FULLSCREEN", { 550,480 + 90,135,35 }, this);
 	vsyncCB = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 7, "VSYNC", { 550,480 + 135,135,35 }, this);
 	goBack = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 8, "BACK", { 550,480 + 180,90,35 }, this);
+	musicSLider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 633,480 - 16,35,35 }, this, { 550,480-8,100,21});
+	SFXslider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, " SFX ", { 633,480 + 49,35,35 }, this, { 550,480 + 57,100,21 }); 
 
 	//settings
 
@@ -141,7 +143,7 @@ bool IntroScreen::Update(float dt)
 
 		while (control != nullptr)
 		{
-			for (int i = 6; i <= 8; ++i) {
+			for (int i = 6; i <= 10; ++i) {
 				if (control->data->id == i) {
 					control->data->showMenu = false;
 				}
@@ -167,7 +169,7 @@ bool IntroScreen::Update(float dt)
 
 		while (control != nullptr)
 		{
-			for (int i = 6; i <= 8; ++i) {
+			for (int i = 6; i <= 10; ++i) {
 				if (control->data->id == i) {
 					control->data->showMenu = true;
 				}
@@ -239,6 +241,12 @@ bool IntroScreen::OnGuiMouseClickEvent(GuiControl* control)
 	case 8:
 		app->guiManager->enableSettings();
 		LOG("Button 8 clicked");
+		break;
+	case 9:
+		LOG("Button 9 clicked");
+		break;
+	case 10:
+		LOG("Button 10 clicked");
 		break;
 	}
 	return true;

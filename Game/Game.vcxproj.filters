@@ -82,6 +82,9 @@
     <ClCompile Include="Source\GuiCheckbox.cpp">
       <Filter>Source\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GuiSlider.cpp">
+      <Filter>Source\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Defs.h">
@@ -196,6 +199,9 @@
       <Filter>Source\Modules</Filter>
     </ClInclude>
     <ClInclude Include="Source\GuiCheckbox.h">
+      <Filter>Source\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiSlider.h">
       <Filter>Source\Modules</Filter>
     </ClInclude>
   </ItemGroup>

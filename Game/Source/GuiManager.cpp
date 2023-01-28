@@ -4,6 +4,7 @@
 
 #include "GuiButton.h"
 #include "GuiCheckbox.h"
+#include "GuiSlider.h"
 #include "Audio.h"
 
 GuiManager::GuiManager(bool startEnabled) : Module(startEnabled)
@@ -49,6 +50,7 @@ GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char
 		guiControl = new GuiCheckbox(id, bounds, text);
 		break;
 	case GuiControlType::SLIDER:
+		guiControl = new GuiSlider(id, bounds, text, sliderBounds);
 		break;
 	case GuiControlType::SLIDERBAR:
 		break;
