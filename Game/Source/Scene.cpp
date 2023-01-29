@@ -55,6 +55,9 @@ bool Scene::Start()
 		items.Add(item);
 	}
 
+	checkpoint = (CheckPoint*)app->entityManager->CreateEntity(EntityType::CHECKPOINT);
+	checkpoint->parameters = app->LoadConfigFile().child("scene").child("checkpoint");
+
 	//L02: DONE 3: Instantiate the player using the entity manager
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->parameters = app->LoadConfigFile().child("scene").child("player");
@@ -122,6 +125,14 @@ bool Scene::Start()
 	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "BACK to TITLE", { (int)w / 2 - 50,(int)h / 2,90,35 }, this);
 	exit = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "EXIT", { (int)w / 2 - 50,(int)h / 2 + 45,90,35 }, this);
 
+	fullscreenCB_ = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 5, "FULLSCREEN", { (int)w / 2 - 50,(int)h / 2 + 90,135,35 }, this);
+	vsyncCB_ = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 6, "VSYNC", { (int)w / 2 - 50,(int)h / 2 + 135,135,35 }, this);
+	goBack_ = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { (int)w / 2 - 50 + 83,(int)h / 2 + 180,90,35 }, this);
+	musicSLider_ = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 8, "MUSIC", { (int)w / 2 - 50 + 83,(int)h / 2 - 16,35,35 }, this, { (int)w / 2 - 50,(int)h / 2 - 8,100,21 });
+	SFXslider_ = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, " SFX ", { (int)w / 2 - 50 + 83,(int)h / 2 + 49,35,35 }, this, { (int)w / 2 - 50,(int)h / 2 + 57,100,21 });
+
+	goMainMenu = false;
+	exitGame = false;
 
 	app->entityManager->Enable();
 	app->pathfinding->Enable();
@@ -204,6 +215,35 @@ bool Scene::Update(float dt)
 		}
 	}
 
+	//enable settings
+	if (app->guiManager->isSettingsActive)
+	{
+		ListItem<GuiControl*>* buttonToActivate = app->guiManager->guiControlsList.start;
+		while (buttonToActivate != NULL)
+		{
+			for (uint i = 5; i <= 9; ++i)
+			{
+				if (buttonToActivate->data->id == i)
+					buttonToActivate->data->showMenu = true;
+			}
+			buttonToActivate = buttonToActivate->next;
+		}
+	}
+
+	if (!app->guiManager->isSettingsActive)
+	{
+		ListItem<GuiControl*>* buttonToActivate = app->guiManager->guiControlsList.start;
+		while (buttonToActivate != NULL)
+		{
+			for (uint i = 5; i <= 9; ++i)
+			{
+				if (buttonToActivate->data->id == i)
+					buttonToActivate->data->showMenu = false;
+			}
+			buttonToActivate = buttonToActivate->next;
+		}
+	}
+
 	// Draw map
 	app->map->Draw();
 
@@ -257,9 +297,13 @@ bool Scene::PostUpdate()
 		app->guiManager->isMenuActive = false;
 		app->physics->PauseGame();
 	}
-		
+	
+	if (app->win->fullscreenOn)
+		SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
+	else if (!app->win->fullscreenOn)
+		SDL_SetWindowFullscreen(app->win->window, 0);
 
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !app->guiManager->isSettingsActive)
 	{
 		app->guiManager->enableMenu();
 		app->physics->PauseGame();
@@ -292,6 +336,24 @@ bool Scene::OnGuiMouseClickEvent(GuiControl* control)
 	case 4:
 		exitGame = true;
 		LOG("Button 4 clicked");
+		break;
+	case 5:
+		app->win->enableFullscreen();
+		LOG("Button 5 clicked");
+		break;
+	case 6:
+		LOG("Button 6 clicked");
+		break;
+	case 7:
+		app->guiManager->enableSettings();
+		app->guiManager->enableMenu();
+		LOG("Button 7 clicked");
+		break;
+	case 8:
+		LOG("Button 8 clicked");
+		break;
+	case 9:
+		LOG("Button 9 clicked");
 		break;
 	}
 	return true;

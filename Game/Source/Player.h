@@ -42,7 +42,7 @@ public:
 
 
 public:
-
+	bool dead = false;
 private:
 
 	//L02: DONE 1: Declare player parameters
@@ -60,7 +60,6 @@ private:
 
 	bool mightKillFE = false;
 	bool mightKillWE = false;
-	bool dead = false;
 	bool waterDeath = false;
 	bool win = false;
 	bool movingRight;

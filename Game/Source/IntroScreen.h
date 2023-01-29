@@ -56,6 +56,7 @@ public:
 private:
 	SDL_Texture* img;
 	SDL_Texture* berry;
+	SDL_Texture* creditsTex;
 
 	bool playNow = false;
 	bool continuePlaying = false;

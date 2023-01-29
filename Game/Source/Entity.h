@@ -15,6 +15,7 @@ enum class EntityType
 	FLYING_ENEMY,
 	ITEM,
 	HEART,
+	CHECKPOINT,
 	UNKNOWN
 };
 

@@ -94,6 +94,9 @@
     <ClCompile Include="Source\Heart.cpp">
       <Filter>Source\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CheckPoint.cpp">
+      <Filter>Source\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Defs.h">
@@ -220,6 +223,9 @@
       <Filter>Source\Modules</Filter>
     </ClInclude>
     <ClInclude Include="Source\Heart.h">
+      <Filter>Source\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CheckPoint.h">
       <Filter>Source\Entity</Filter>
     </ClInclude>
   </ItemGroup>

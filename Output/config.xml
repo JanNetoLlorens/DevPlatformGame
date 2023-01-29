@@ -28,6 +28,7 @@
   <introScreen>
     <img texturepath="Assets/Textures/newMenu.png"/>
     <berry texturepath="Assets/Textures/Berry.png"/>
+    <credits texturepath="Assets/Textures/Credits.png"/>
   </introScreen>
   <scene>
     <player x="150" y="590" texturepath="Assets/Textures/Ruffy_SpriteSheet.png"/> 
@@ -45,9 +46,15 @@
     <item x="1792" y="285" texturepath="One Piece Game Dev Assets/Ruffy/Berry.png"/>
 	<item x="1600" y="225" texturepath="One Piece Game Dev Assets/Ruffy/Berry.png"/> 
     <heart x="150" y="400" texturepath="Assets/Textures/Heart.png"/>
+<<<<<<< HEAD
 	  <item x="973" y="385" texturepath="Assets/Textures/Heart.png"/>
    <!-- <flyingEnemy x="1696" y="448" texturepath="Assets/Textures/flyingEnemy.png" pathfinding_texturepath="path_square.png"/> -->
    <walkingEnemy x="545" y="340" texturepath="Assets/Textures/groundEnemy.png" pathfinding_texturepath="path_square.png"/>
+=======
+    <checkpoint x="350" y="620" texturepath="Assets/Textures/checkpoints.png"/>
+    <flyingEnemy x="1696" y="448" texturepath="Assets/Textures/flyingEnemy.png" pathfinding_texturepath="path_square.png"/>
+    <walkingEnemy x="545" y="340" texturepath="Assets/Textures/groundEnemy.png" pathfinding_texturepath="path_square.png"/>
+>>>>>>> 8d62c030da2b3f4e2e9ce488014de954bfea5d0d
     <guyButtons>
       <resume x="567" y="366" texturepath="Assets/Textures/Button.png"/>
     </guyButtons>

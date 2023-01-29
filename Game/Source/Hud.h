@@ -41,6 +41,7 @@ public:
 	uint coinsCount;
 
 private:
+	SDL_Texture* checkpoint;
 	SDL_Texture* coin;
 	SDL_Texture* heart;
 	Timer timeCount;

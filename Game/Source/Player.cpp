@@ -345,7 +345,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		case ColliderType::HEART:
 			LOG("Collision ITEM");
 			//app->audio->PlayFx(pickCoinFxId);
-			app->hud->heartsCount++;
+			if(app->hud->heartsCount < 4)
+				app->hud->heartsCount++;
 			break;
 		case ColliderType::PLATFORM:
 			LOG("Collision PLATFORM");
