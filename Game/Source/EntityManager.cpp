@@ -100,6 +100,10 @@ Entity* EntityManager::CreateEntity(EntityType type)
 		entity = new Heart();
 		break;
 
+	case EntityType::CHECKPOINT:
+		entity = new CheckPoint();
+		break;
+
 	case EntityType::WALKING_ENEMY:
 		entity = new WalkingEnemy();
 		break;

@@ -8,6 +8,7 @@
 	<logoScreen />
 	<introScreen />
 	<scene />
+	<hud />
 	<introScreen />
 	<WinScreen />
 	<entitymanager />
@@ -16,6 +17,6 @@
 	<:anonymous />
 	<:anonymous />
 	<renderer>
-		<camera x="0" y="-221" />
+		<camera x="0" y="-81" />
 	</renderer>
 </save_state>

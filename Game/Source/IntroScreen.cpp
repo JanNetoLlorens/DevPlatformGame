@@ -38,6 +38,7 @@ bool IntroScreen::Start()
 {
 	img = app->tex->Load(app->LoadConfigFile().child("introScreen").child("img").attribute("texturepath").as_string());
 	berry = app->tex->Load(app->LoadConfigFile().child("introScreen").child("berry").attribute("texturepath").as_string());
+	creditsTex = app->tex->Load(app->LoadConfigFile().child("introScreen").child("credits").attribute("texturepath").as_string());
 
 	app->win->scale = 1;
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
@@ -98,7 +99,6 @@ bool IntroScreen::Update(float dt)
 	if (playNow)
 	{
 		playNow = false;
-		app->guiManager->Disable();
 		app->fade->FadeToBlack(this, (Module*)app->scene, 10);
 	}
 
@@ -107,11 +107,6 @@ bool IntroScreen::Update(float dt)
 		continuePlaying = false;
 		app->guiManager->Disable();
 		app->fade->FadeToBlack(this, (Module*)app->scene, 10);
-	}
-
-	if (creditsActive)
-	{
-		creditsActive = false;
 	}
 
 	if (exitGame)
@@ -189,8 +184,13 @@ bool IntroScreen::PostUpdate()
 	app->render->DrawTexture(img, 0, 45);
 	app->guiManager->Draw();
 
+	if (creditsActive)
+	{
+		app->render->DrawTexture(creditsTex, 500, 500);
+	}
+
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
+		creditsActive = false;
 
 	return ret;
 }
@@ -198,7 +198,10 @@ bool IntroScreen::PostUpdate()
 // Called before quitting
 bool IntroScreen::CleanUp()
 {
+	app->guiManager->Disable();
 	app->tex->UnLoad(img);
+	app->tex->UnLoad(berry);
+	app->tex->UnLoad(creditsTex);
 	LOG("Freeing LogoScreen");
 
 	return true;

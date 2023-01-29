@@ -29,6 +29,7 @@ enum class ColliderType {
 	FLYING_ENEMY,
 	ITEM,
 	HEART,
+	CHECKPOINT,
 	PLATFORM, 
 	WALL,
 	DEATH,

@@ -7,6 +7,9 @@
 #include "FlyingEnemy.h"
 #include "Item.h"
 #include "GuiButton.h"
+#include "GuiCheckbox.h"
+#include "GuiSlider.h"
+#include "CheckPoint.h"
 
 struct SDL_Texture;
 
@@ -46,6 +49,7 @@ public:
 	Player* player;
 	WalkingEnemy* walkingEn;
 	FlyingEnemy* flyingEn;
+	CheckPoint* checkpoint;
 
 	List<WalkingEnemy*> walkingEnList;
 	List<FlyingEnemy*> flyingEnList;
@@ -54,7 +58,7 @@ public:
 	uint Susume_fx;
 
 private:
-	SDL_Texture* img;
+	SDL_Texture* img = nullptr;
 	SDL_Texture* mouseTileTex = nullptr;
 	SDL_Texture* originTex = nullptr;
 
@@ -73,14 +77,12 @@ private:
 	GuiButton* backToTitle;
 	GuiButton* exit;
 	//settings
-	//GuiSlider* musicVolumeSlider;
-	GuiButton* musicVolume;
-	GuiButton* fxVolume;
-	//GuiSlider* fxVolumeSlider;
-	GuiButton* fullscreen;
-	//GuiCheckBox* fullscreenCheck;
-	GuiButton* vsync;
-	//GuiCheckBox* VsyncCheck;
+	GuiCheckbox* fullscreenCB_;
+	GuiCheckbox* vsyncCB_;
+	GuiButton* goBack_;
+	GuiSlider* musicSLider_;
+	GuiSlider* SFXslider_;
+
 	bool goMainMenu;
 	bool exitGame;
 

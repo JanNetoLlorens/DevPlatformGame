@@ -37,6 +37,7 @@ bool Hud::Start()
 {
 	coin = app->tex->Load(app->LoadConfigFile().child("hud").child("coin").attribute("texturepath").as_string());
 	heart = app->tex->Load(app->LoadConfigFile().child("hud").child("heart").attribute("texturepath").as_string());
+	checkpoint = app->tex->Load(app->LoadConfigFile().child("hud").child("heart").attribute("texturepath").as_string());
 	app->render->camera.x = 0;
 	app->render->camera.y = 0;
 	
