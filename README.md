@@ -29,7 +29,7 @@ Luffy lost all his crew when they disembarced in that mysterious island, now he'
 
 ## Developers
 
- - Jan Neto: htps://github.com/JanNetoLlorens
+ - Jan Neto: https://github.com/JanNetoLlorens
  - Hèctor Garcia: https://github.com/Neidragon
  
 
