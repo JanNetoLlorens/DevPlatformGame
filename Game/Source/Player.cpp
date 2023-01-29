@@ -270,8 +270,14 @@ bool Player::Update()
 			mightKillWE = false;
 			app->hud->heartsCount--;
 			invincible = true;
-			if (app->hud->heartsCount == 0)
+			if (app->hud->heartsCount == 0 && app->scene->checkpoint->isPicked)
+			{
+				app->hud->heartsCount = 1;
+				pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(app->scene->checkpoint->position.x), PIXEL_TO_METERS(app->scene->checkpoint->position.x)), 0);
+			}
+			else if (app->hud->heartsCount == 0 && !app->scene->checkpoint->isPicked)
 				dead = true;
+			
 		}
 	}
 	if (mightKillFE)
@@ -286,7 +292,12 @@ bool Player::Update()
 			mightKillFE = false;
 			app->hud->heartsCount--;
 			invincible = true;
-			if (app->hud->heartsCount == 0)
+			if (app->hud->heartsCount == 0 && app->scene->checkpoint->isPicked)
+			{
+				app->hud->heartsCount = 1;
+				pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(app->scene->checkpoint->position.x), PIXEL_TO_METERS(app->scene->checkpoint->position.x)), 0);
+			}
+			else if (app->hud->heartsCount == 0 && !app->scene->checkpoint->isPicked)
 				dead = true;
 		}
 	}
@@ -303,11 +314,20 @@ bool Player::Update()
 
 	if (waterDeath)
 	{
-		currentAnimation = &dieAnim;
-		if (dieAnim.HasFinished() == true)
+		if (app->scene->checkpoint->isPicked)
 		{
-			app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 15);
-			app->entityManager->Disable();
+			waterDeath = false;
+			app->hud->heartsCount = 1;
+			pbody->body->SetTransform(b2Vec2(PIXEL_TO_METERS(app->scene->checkpoint->position.x), PIXEL_TO_METERS(app->scene->checkpoint->position.x)), 0);
+		}
+		else
+		{
+			currentAnimation = &dieAnim;
+			if (dieAnim.HasFinished() == true)
+			{
+				app->fade->FadeToBlack((Module*)app->scene, (Module*)app->lose, 15);
+				app->entityManager->Disable();
+			}
 		}
 	}
 

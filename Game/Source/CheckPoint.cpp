@@ -47,6 +47,8 @@ bool CheckPoint::Start() {
 	// L07 DONE 4: Add a physics to an item - initialize the physics body
 	pbody = app->physics->CreateRectangleSensor(position.x, position.y, 19, 30, bodyType::STATIC);
 
+	pbody->listener = this;
+
 	// L07 DONE 7: Assign collider type
 	pbody->ctype = ColliderType::CHECKPOINT;
 
