@@ -9,10 +9,11 @@ Luffy lost all his crew when they disembarced in that mysterious island, now he'
  - All entity assets used in this development are desgined by us, and are inspired by Eichiro Oda's manga.
  - Luffy the character can jump
  - Luffy is a Devil Fruit User he cannot touch water or he'll die so you better wath out where you're falling.
- - A check point flag
+ - A check point flag it teleports you but the camera doesn't follow it.
  - Enemies which will follow you until you die or you kill them by jumping over them.
- - Coins distributed by the map that you can take and increase your high score.
- - Hearts distributed by the map that you can take and increase your life points.
+ - Coins distributed by the map that you can collect.
+ - Hearts distributed by the map that you can collect to increase your life points. There is a maximum amount of hearts you can have which is 4.
+ - Menu added. Main menu working correctly but ingame menu the sliders work but the visual is not according to where the real slider is.
  
 ## Controls
 
