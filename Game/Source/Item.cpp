@@ -49,6 +49,7 @@ bool Item::Update()
 	if (isPicked)
 	{
 		pbody->body->SetActive(false);
+		app->tex->UnLoad(texture);
 	}
 
 	// L07 DONE 4: Add a physics to an item - update the position of the object from the physics.  
