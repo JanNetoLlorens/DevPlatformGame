@@ -28,7 +28,7 @@
   <introScreen>
     <img texturepath="Assets/Textures/newMenu.png"/>
     <berry texturepath="Assets/Textures/Berry.png"/>
-    <credits texturepath="Assets/Textures/Berry.png"/>
+    <credits texturepath="Assets/Textures/Credits.png"/>
   </introScreen>
   <scene>
     <player x="150" y="590" texturepath="Assets/Textures/Ruffy_SpriteSheet.png"/>

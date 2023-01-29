@@ -186,7 +186,7 @@ bool IntroScreen::PostUpdate()
 
 	if (creditsActive)
 	{
-		app->render->DrawTexture(creditsTex, 500, 500);
+		app->render->DrawTexture(creditsTex, 0, 45);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
