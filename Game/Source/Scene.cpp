@@ -71,14 +71,8 @@ bool Scene::Start()
 	flyingEn->parameters = app->LoadConfigFile().child("scene").child("flyingEnemy");
 	flyingEnList.Add(flyingEn);
 
-
-	//img = app->tex->Load("Assets/Textures/test.png");
-
 	app->audio->PlayMusic("One Piece Game Dev Assets/Music/Bazooka.wav");
 
-
-
-	//Susume_fx = app->audio->LoadFx("One Piece Game Dev Assets/Music/Overtaken.wav");
 	
 	// L03: DONE: Load map
 	bool retLoad = app->map->Load();
