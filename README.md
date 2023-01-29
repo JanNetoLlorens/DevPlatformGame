@@ -4,13 +4,15 @@
 
 Luffy lost all his crew when they disembarced in that mysterious island, now he's alone and doesen't know where to go, follow him as he travels through that mysterious island and discover it's mysteries.
 
-## Features (First Level/First Delivery)
+## Features (Third Delivery)
 
  - All entity assets used in this development are desgined by us, and are inspired by Eichiro Oda's manga.
  - Luffy the character can jump
  - Luffy is a Devil Fruit User he cannot touch water or he'll die so you better wath out where you're falling.
- - The first floor seems to have some coins but Luffy doesen't seem interested in them, maybe try drop them in the water, that will be fun.
+ - A check point flag
  - Enemies which will follow you until you die or you kill them by jumping over them.
+ - Coins distributed by the map that you can take and increase your high score.
+ - Hearts distributed by the map that you can take and increase your life points.
  
 ## Controls
 
@@ -27,7 +29,7 @@ Luffy lost all his crew when they disembarced in that mysterious island, now he'
 
 ## Developers
 
- - Jan Neto: hhtps://github.com/JanNetoLlorens
+ - Jan Neto: htps://github.com/JanNetoLlorens
  - Hèctor Garcia: https://github.com/Neidragon
  
 
